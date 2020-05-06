@@ -19,3 +19,328 @@
 </head>
 
 <body>
+  <!--*******************
+      Preloader start
+  ********************-->
+  <div id="preloader">
+      <div class="loader">
+          <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+          </svg>
+      </div>
+  </div>
+  <!--*******************
+      Preloader end
+  ********************-->
+
+
+  <!--**********************************
+      Main wrapper start
+  ***********************************-->
+  <div id="main-wrapper">
+
+      <!--**********************************
+          Nav header start
+      ***********************************-->
+      <div class="nav-header">
+          <div class="brand-logo">
+              <a href="index.html">
+                  <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                  <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                  <span class="brand-title">
+                      <img src="images/logo-text.png" alt="">
+                  </span>
+              </a>
+          </div>
+      </div>
+      <!--**********************************
+          Nav header end
+      ***********************************-->
+
+      <!--**********************************
+          Header start
+      ***********************************-->
+      <div class="header">
+          <div class="header-content clearfix">
+
+              <div class="nav-control">
+                  <div class="hamburger">
+                      <span class="toggle-icon"><i class="icon-menu"></i></span>
+                  </div>
+              </div>
+              <div class="header-left">
+                  <div class="input-group icons">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                      </div>
+                      <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                      <div class="drop-down animated flipInX d-md-none">
+                          <form action="#">
+                              <input type="text" class="form-control" placeholder="Search">
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <div class="header-right">
+                  <ul class="clearfix">
+                      <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                              <i class="mdi mdi-bell-outline"></i>
+                              <span class="badge badge-pill gradient-2">3</span>
+                          </a>
+                          <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                              <div class="dropdown-content-heading d-flex justify-content-between">
+                                  <span class="">2 New Notifications</span>
+                                  <a href="javascript:void()" class="d-inline-block">
+                                      <span class="badge badge-pill gradient-2">5</span>
+                                  </a>
+                              </div>
+                              <div class="dropdown-content-body">
+                                  <ul>
+                                      <li>
+                                          <a href="javascript:void()">
+                                              <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                              <div class="notification-content">
+                                                  <h6 class="notification-heading">Events near you</h6>
+                                                  <span class="notification-text">국내코로나현황이 업데이트 됐습니다.</span>
+                                              </div>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="javascript:void()">
+                                              <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                              <div class="notification-content">
+                                                  <h6 class="notification-heading">Event Started</h6>
+                                                  <span class="notification-text">우리동네코로나현황이 업데이트 됐습니다.</span>
+                                              </div>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </li>
+                      <li class="icons dropdown d-none d-md-flex">
+                          <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                              <span>Korean</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                          </a>
+                          <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                              <div class="dropdown-content-body">
+                                  <ul>
+                                      <li><a href="javascript:void()">Korean</a></li>
+                                      <li><a href="javascript:void()">Dutch</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <!--**********************************
+          Header end ti-comment-alt
+      ***********************************-->
+
+      <!--**********************************
+          Sidebar start
+      ***********************************-->
+      <div class="nk-sidebar">
+          <div class="nk-nav-scroll">
+              <ul class="metismenu" id="menu">
+                  <li class="nav-label">국내코로나현황</li>
+                  <li>
+                      <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                          <i class="icon-speedometer menu-icon"></i><span class="nav-text">국내코로나현황</span>
+                      </a>
+                      <ul aria-expanded="false">
+                          <li><a href="./index.html">Home 1</a></li>
+                          <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!--**********************************
+          Sidebar end
+      ***********************************-->
+
+      <!--**********************************
+          Content body start
+      ***********************************-->
+      <div class="content-body">
+
+          <div class="container-fluid mt-3">
+              <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card gradient-1">
+                          <div class="card-body">
+                              <h3 class="card-title text-white">총 확진자</h3>
+                              <div class="d-inline-block">
+                                  <h2 class="text-white">10,423</h2>
+                                  <h2 class="text-white">(+23)</h2>
+                                  <p class="text-white mb-0">2020.05.06 기준</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card gradient-2">
+                          <div class="card-body">
+                              <h3 class="card-title text-white">격리 중</h3>
+                              <div class="d-inline-block">
+                                  <h2 class="text-white">3,246</h2>
+                                  <h2 class="text-white">(+23)</h2>
+                                  <p class="text-white mb-0">2020.05.06 기준</p>
+                              </div>
+                              <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card gradient-3">
+                          <div class="card-body">
+                              <h3 class="card-title text-white">격리해제</h3>
+                              <div class="d-inline-block">
+                                  <h2 class="text-white">6,973</h2>
+                                  <h2 class="text-white">(+23)</h2>
+                                  <p class="text-white mb-0">2020.05.06 기준</p>
+                              </div>
+                              <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card gradient-4">
+                          <div class="card-body">
+                              <h3 class="card-title text-white">검사 진행</h3>
+                              <div class="d-inline-block">
+                                  <h2 class="text-white">15,509</h2>
+                                  <h2 class="text-white">(+640)</h2>
+                                  <p class="text-white mb-0">2020.05.06 기준</p>
+                              </div>
+                              <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="card">
+                                  <div class="card-body pb-0 d-flex justify-content-between">
+                                      <div>
+                                          <h4 class="mb-1">국내코로나현황</h4>
+                                          <p>국내 코로나 현황을 알려줍니다. 이부분은 지도로 대체할 것입니다.</p>
+                                          <h3 class="m-0">10,423</h3>
+                                      </div>
+                                      <div>
+                                          <ul>
+                                              <li class="d-inline-block mr-3"><a class="text-dark" href="#">전체</a></li>
+                                              <li class="d-inline-block mr-3"><a class="text-dark" href="#">격리 중</a></li>
+                                              <li class="d-inline-block"><a class="text-dark" href="#">격리 해제</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                                  <div class="chart-wrapper">
+                                      <canvas id="chart_widget_2"></canvas>
+                                  </div>
+                                  <div class="card-body">
+                                      <div class="d-flex justify-content-between">
+                                          <div class="w-100 mr-2">
+                                              <h6>Pixel 2</h6>
+                                              <div class="progress" style="height: 6px">
+                                                  <div class="progress-bar bg-danger" style="width: 40%"></div>
+                                              </div>
+                                          </div>
+                                          <div class="ml-2 w-100">
+                                              <h6>iPhone X</h6>
+                                              <div class="progress" style="height: 6px">
+                                                  <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+              <div class="row">
+                      <div class="col-lg-6 col-md-12">
+                          <div class="card">
+                              <div class="card-body">
+                                  <h4 class="card-title">현황표</h4>
+                                  <div id="morris-bar-chart"></div>
+                              </div>
+                          </div>
+
+                      </div>
+                  <div class="col-xl-6 col-lg-12 col-sm-12 col-xxl-12">
+                      <div class="card">
+                          <div class="card-body">
+                                  <h4 class="card-title mb-0">지도</h4>
+                              <div id="world-map" style="height: 470px;"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- #/ container -->
+      </div>
+      <!--**********************************
+          Content body end
+      ***********************************-->
+
+      <!--**********************************
+          Footer start
+      ***********************************-->
+      <div class="footer">
+          <div class="copyright">
+              <p>Copyright &copy; Designed & Developed by 소프트웨어학과 캡스톤 3조 2020</p>
+          </div>
+      </div>
+      <!--**********************************
+          Footer end
+      ***********************************-->
+      </div>
+      <!--**********************************
+      Main wrapper end
+      ***********************************-->
+
+      <!--**********************************
+      Scripts
+      ***********************************-->
+      <script src="./Resources/plugins/common/common.min.js"></script>
+      <script src="./js/custom.min.js"></script>
+      <script src="./js/settings.js"></script>
+      <script src="./js/gleek.js"></script>
+      <script src="./js/styleSwitcher.js"></script>
+
+      <!-- Chartjs -->
+      <script src="./Resources/plugins/chart.js/Chart.bundle.min.js"></script>
+      <!-- Circle progress -->
+      <script src="./Resources/plugins/circle-progress/circle-progress.min.js"></script>
+      <!-- Datamap -->
+      <script src="./Resources/plugins/d3v3/index.js"></script>
+      <script src="./Resources/plugins/topojson/topojson.min.js"></script>
+      <script src="./Resources/plugins/datamaps/datamaps.world.min.js"></script>
+      <!-- Morrisjs -->
+      <script src="./Resources/plugins/raphael/raphael.min.js"></script>
+      <script src="./Resources/plugins/morris/morris.min.js"></script>
+      <!-- Pignose Calender -->
+      <script src="./Resources/plugins/moment/moment.min.js"></script>
+      <script src="./Resources/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+      <!-- ChartistJS -->
+      <script src="./Resources/plugins/chartist/js/chartist.min.js"></script>
+      <script src="./Resources/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+
+
+
+      <script src="./Resources/js/dashboard/dashboard-1.js"></script>
+
+      </body>
+
+      </html>
