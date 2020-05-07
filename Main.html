@@ -15,7 +15,13 @@
     <link rel="stylesheet" href="./Resources/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(function(){
+      $("#datepicker").datepicker();
+    });
     <!-- 네이버 지도 API -->
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4"></script>
 
@@ -252,9 +258,8 @@
                               </div>
                               <p>
                               <label for="datepicker">기간</label>
-                              <input id="datepicker" name="db_date"/>
-                              <h6>~</h6>
-                              <input id="datepicker" name="db_date"/>
+                                <p>Date: <input type="text" id="datepicker"></p>
+                                <h6>~</h6>
                             </p>
                             <button type="button" class="btn mb-1 btn-outline-info">확인</button>
                             </div>
