@@ -71,18 +71,7 @@
                   </div>
               </div>
               <div class="header-left">
-                  <div class="input-group icons">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                      </div>
-                      <input type="search" class="form-control" placeholder="검색" aria-label="Search Dashboard">
-                      <div class="drop-down animated flipInX d-md-none">
-                          <form action="#">
-                              <input type="text" class="form-control" placeholder="Search">
-                          </form>
-                      </div>
-                  </div>
-              </div>
+            </div>
               <div class="header-right">
                   <ul class="clearfix">
                       <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
@@ -178,14 +167,27 @@
                                   <div class="card-body pb-0 d-flex justify-content-between">
 
                                     <!-- 지도 -->
+                                    <script type="text/javascript">
+                                    var map=null;
+                                    function initMap(){
+                                      map = new naver.maps.Map(document.getElementByld('map')),
+                                      {
+                                        center:new.naver.maps.LatLng("latitude","longtitude"),
+                                        zoom:11
+                                        mapTypeControl:true,
+                                        zoomControlOptions:{
+                                          style:naver.maps.ZoomControlStyle.SMALL,
+                                          position:naver.maps.Position.TOP_RIGHT
+                                        },
+                                        zoomControl:true});
+                                      var contentString='tkt';
+                                      var marker=new naver.maps.Marker({
+                                        position:new naver.maps.LatLng("latitude","longtitude"),
+                                        title:contentString,
+                                        map:map
+                                      });
+                                    }</script>
                                     <div id="map" style="width:100%;height:600px;"></div>
-                                    <script>
-                                    var mapOptions = {
-                                      center: new naver.maps.LatLng(37.3595704, 127.105399),
-                                      zoom: 10
-                                    };
-                                    var map = new naver.maps.Map('map', mapOptions);
-                                    </script>
                                     <!-- 지도 -->
 
                                   </div>
@@ -226,7 +228,8 @@
       <!--**********************************
       Scripts
       ***********************************-->
-      <script src="./js/geoCurrentPosition.js"></script>
+      <script src="./js/getCurrentPosition.js"></script>
+      <script src="./js/SearchAddress.js"></script>
       <script src="./Resources/plugins/common/common.min.js"></script>
       <script src="./js/custom.min.js"></script>
       <script src="./js/settings.js"></script>
