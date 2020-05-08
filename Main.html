@@ -76,6 +76,7 @@
               </div>
               <!-- header의 왼쪽에는 안전수칙, 주요뉴스 헤드라인을 구현할 예정임-->
               <div class="header-left">
+
               </div>
               <!-- header의 오른쪽에는 알람기능이 있고 이는 드롭다운박스 형태로 알람 아이콘을 클릭하면 세부 내용을 알 수 있게 만듦-->
               <div class="header-right">
@@ -98,8 +99,8 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.05.06</h6>
-                                                  <span class="notification-text">국내코로나현황이 업데이트 됐습니다.</span>
+                                                  <h6 class="notification-heading">20.05.06 12:00 AM</h6>
+                                                  <span class="notification-text">국내 코로나 현황 업데이트 완료</span>
                                               </div>
                                           </a>
                                       </li>
@@ -107,8 +108,8 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.05.06</h6>
-                                                  <span class="notification-text">우리동네코로나현황이 업데이트 됐습니다.</span>
+                                                  <h6 class="notification-heading">20.05.06 12:00 AM</h6>
+                                                  <span class="notification-text">우리동네 코로나 현황 업데이트 완료</span>
                                               </div>
                                           </a>
                                       </li>
@@ -207,65 +208,61 @@
                            </div>
                        </div>
                    </div>
-                   <!-- 감염증 현황 끝, 검색 옵션 시작 연령대,성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
-              <div class ="container">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">검색 옵션</h4>
-                        <div class="dropdown-button">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나이대</button>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">0~11</a>
-                                  <a class="dropdown-item" href="#">11~20</a>
-                                  <a class="dropdown-item" href="#">21~30</a>
-                                  <a class="dropdown-item" href="#">31~40</a>
-                                  <a class="dropdown-item" href="#">41~50</a>
-                                  <a class="dropdown-item" href="#">51~60</a>
-                                  <a class="dropdown-item" href="#">60 이상</a>
-                                </div>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">성별</button>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">남</a>
-                                  <a class="dropdown-item" href="#">여</a>
-                                  <a class="dropdown-item" href="#">전체</a>
-                                </div>
-                              </div>
-                              <p>
-                              <label for="datepicker">기간</label>
-                                <p>Date: <input type="text" id="datepicker"></p>
-                                <h6>~</h6>
-                            </p>
-                            <button type="button" class="btn mb-1 btn-outline-info">확인</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
               <!-- 검색옵션 끝, 지도 부분 시작-->
               <div class="row">
                   <div class="col-lg-12">
                       <div class="row">
                           <div class="col-12">
                               <div class="card">
-                                  <div class="card-body pb-0 d-flex justify-content-between">
-                                    <div>
-                                        <h4 class="mb-1">국내코로나현황</h4>
-                                        <p>국내 코로나 현황을 알려줍니다. 이부분은 지도로 대체할 것입니다.</p>
-                                        <h3 class="m-0">10,423</h3>
-                                    </div>
+                                <div class="card-body pb-0 d-flex justify-content-between">
+                                  <div>
+                                      <h3 class="mb-1">국내코로나현황</h3>
+                                      <p>국내 코로나 현황을 알려줍니다. 이부분은 산점도로 대체할 것입니다.</p>
+                                      <!--<h3 class="m-0">10,423</h3>-->
+                                  </div>
                                     <!--버튼 전체 격리중 격리해제-->
-                                    <div class="outline-button">
+                                    <div class="outline-button justify-content-end">
                                         <button type="button" class="btn mb-1 btn-outline-primary">전체</button>
                                         <button type="button" class="btn mb-1 btn-outline-danger">격리중</button>
                                         <button type="button" class="btn mb-1 btn-outline-info">격리해제</button>
                                     </div>
-
                                   </div>
-                                  <div class="card-body pb-0 d-flex justify-content-between">
+                                  <div class="card-body pb-0 d-flex justify-content-around">
+                                    <!-- 감염증 현황 끝, 검색 옵션 시작 연령대,성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
+                                    <div class ="container align-items-start">
+                                          <h3 class="card-title">검색 옵션</h3>
+                                              <div class="dropdown-button">
+                                                  <div class="btn-group" role="group">
+                                                      <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나이대</button>
+                                                      <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#">0~11</a>
+                                                        <a class="dropdown-item" href="#">11~20</a>
+                                                        <a class="dropdown-item" href="#">21~30</a>
+                                                        <a class="dropdown-item" href="#">31~40</a>
+                                                        <a class="dropdown-item" href="#">41~50</a>
+                                                        <a class="dropdown-item" href="#">51~60</a>
+                                                        <a class="dropdown-item" href="#">60 이상</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="btn-group" role="group">
+                                                      <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">성별</button>
+                                                      <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#">남</a>
+                                                        <a class="dropdown-item" href="#">여</a>
+                                                        <a class="dropdown-item" href="#">전체</a>
+                                                      </div>
+                                                  </div>
+                                                    <p>
+                                                    <label for="datepicker">기간</label>
+                                                      <p>Date: <input type="text" id="datepicker"></p>
+                                                      <h6>~</h6>
+                                                  </p>
+                                                  <button type="button" class="btn mb-1 btn-outline-info">확인</button>
+                                                </div>
+                                    </div>
                                     <!-- 지도 -->
-                                    <div id="map" style="width:100%;height:400px;"></div>
+                                    <div id="map" style="width:300%;height:400px;"></div>
                                     <script>
                                     var mapOptions = {
                                       center: new naver.maps.LatLng(37.3595704, 127.105399),
@@ -276,9 +273,9 @@
                                     <!-- 지도 -->
 
                                   </div>
-                                  <div class="card-body pb-0 d-flex justify-content-between">
+                                  <div class="card-body pb-0 d-flex justify-content-around">
                                     <div class="w-100 mr-2">
-                                        <h6>//</h6>
+                                        <p>타임라인바 위치할 예정</p>
                                     </div>
                                   </div>
                               </div>
