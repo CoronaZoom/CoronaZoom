@@ -5,7 +5,9 @@
 
 5/13
 
-- Resources-images 폴더에 로고 추가
+- Resources-images 폴더에 로고 추가 & favicon 변경
 
 - 3개의 html 모두 main -> index로 이름 수정
 	& 로고 코드 추가
+
+( 로고 위치는 아직 제대로 못해뒀어요ㅠ )
