@@ -1,18 +1,17 @@
-### ////// 변경 사항 //////
+### :point_right: 프로젝트 변경 사항 및 진행 상황 :point_left:
+* [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!
 
-여기서 변경사항 이야기 하면 됩니다!
-
-
+<hr/>
 
 CoronaZoom_WEB
 ===================
-#### 호흡기 전염병(COVID-19) 역학조사를 위한 시각화 웹 플랫폼 REPOSITORY
+#### :mask:호흡기 전염병(COVID-19):mask: 역학조사를 위한 시각화 웹 플랫폼 REPOSITORY
 
 ## Team Member
 ###### 세종대학교 소프트웨어학과 캡스톤디자인 (Sejong University Dept. of Software Capstone Design 2020)
 |이름|github ID|역할|
 |------|---|---|
-|김슬기|@4z7l||
+|김슬기|[@4z7l](https://github.com/4z7l)||
 |전승현|@jsh5408||
 |박세원|@bigwon9999||
 |황준철|@JJunCH014||
@@ -20,35 +19,32 @@ CoronaZoom_WEB
 코로나줌(CoronaZoom)
 ===================
 
-[코로나줌](http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com/)
+:purple_heart: [코로나줌]() 구경하기
 
-#### 메인 페이지
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/index.png" title="index page" alt="index page"></img>
+#### 메인 페이지 미리보기
+<img width="80%" src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/index.png" title="index page" alt="index page"></img>
 
-1.아키텍쳐 설계 (Architecture Design)
+1.상세 설계
 ------------------------------------
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/arch_design1.PNG" title="architecture design1" alt="architecture design1"></img>
+* [상세 설계 Wiki](https://github.com/4z7l/CoronaZoom_WEB/wiki/%EC%83%81%EC%84%B8-%EC%84%A4%EA%B3%84)
+  - 아키텍쳐 설계 (Architecture Design)
+  - UI 설계 (UI Design)
+  - 데이터베이스 설계 (Database Design)
 
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/arch_design2.PNG" title="architecture design2" alt="architecture design2"></img>
 
 ### 1-1.개발 환경(Development Environment)
 * AWS EC2 - Ubuntu
 * MySQL
 
+<hr/>
 
-2.UI 설계 (UI Design)
+2.시작
 ------------------------------------
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/ui_design1.PNG" title="ui_design1" alt="ui_design1"></img>
-
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/ui_design2.PNG" title="ui_design2" alt="ui_design2"></img>
-
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/ui_design3.PNG" title="ui_design3" alt="ui_design3"></img>
-
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/ui_design4.PNG" title="ui_design4" alt="ui_design4"></img>
-
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/ui_design5.PNG" title="ui_design5" alt="ui_design5"></img>
-
-3.데이터베이스 설계 (Database Design)
-------------------------------------
-
-<img src="./CoronaZoom_FrontEnd/Resources/images/ReadMe/db_design1.PNG" title="db_design1" alt="db_design1"></img>
+### 2-1. 환경변수 설정
+<pre><code>
+ENV_MYSQL_HOST = "DB 호스트 이름"
+ENV_MYSQL_USER = "DB 사용자 이름"
+ENV_MYSQL_PASSWORD = "DB 비밀번호"
+ENV_HOSP_API_KEY = "공공데이터포털 코로나 선별진료소 OPEN API 키"
+ENV_REGION_API_KEY = "VWORLD 시군구 행정구역 OPEN API 키"
+</code></pre>
