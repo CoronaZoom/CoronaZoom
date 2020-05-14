@@ -30,7 +30,7 @@ function onSuccessGeolocation(position) {
     var contentString = [
             '<div class="iw_inner">',
             '   <h3>현재위치</h3>',
-            '   <p>서울이지롱<br />',
+            '   <p>~~~~<br />',
             '   </p>',
             '</div>'
         ].join('');
