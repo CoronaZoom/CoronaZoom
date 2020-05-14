@@ -20,9 +20,13 @@ function getLocation() {
 function onSuccessGeolocation(position) {
     var location = new naver.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
-
+    var marker = new naver.maps.Marker({
+      position: location,
+      map: map});
     map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
     map.setZoom(15); // 지도의 줌 레벨을 변경합니다.
+    marker.setPosition(location);
+
 }
 
 function onErrorGeolocation() {
