@@ -20,9 +20,11 @@ var dbconnection = {
 	init : function(){
 		var hostname = os.hostname();
 		if(hostname === 'DESKTOP-JMPL7B7'){ //슬기 컴퓨터
+			console.log("Local Database Connect Succesfully!");
 			return mysql.createConnection(dbconnInfo.test);	//Local Server
 		}else{
-			return mysql.createConnection(dbconnInfo.develop);	//CoronaZoom Server
+			console.log("Develop Database Connect Succesfully!");
+			return mysql.createConnection(dbconnInfo.develop);	//CoronaZoom Server\
 		}
 	},
 
