@@ -21,6 +21,8 @@
 
 [5/14 승현]
 
-- 로고 크기 변경했어요 / Resources-images 폴더에 logo, logo-compact, logo-text 수정
+- 로고 크기 변경했어요 / Resources-images 폴더에 logo.png, logo-compact.png, logo-text.png 수정
 
 - 기간 선택 부분에 캘린더 추가했어요 / index.html 수정
+
+- 우리 동네 현황 페이지 지도에서 현재 사용자의 위치에 맞게 표시되게 했어요 / GetCurrentPosition.js 수정
