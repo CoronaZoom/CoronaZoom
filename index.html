@@ -17,22 +17,24 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- end jquery-->
+
     <script type="text/javascript">
     $(function(){
       $("#datepicker").datepicker();
     });</script>
-    <!-- end jquery-->
 
-    <!-- 네이버 지도 적용 주소 바꿔주세요!! -->
     <!-- 네이버 지도 API 적용-->
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4"></script>
 
+    <!-- 캘린더 -->
     <style>
       * {
         font-size: 16px;
         font-family: Consolas, sans-serif;
       }
     </style>
+    <!-- 캘린더 -->
 
 </head>
 
@@ -245,10 +247,38 @@
                                       <!--<h3 class="m-0">10,423</h3>-->
                                   </div>
                                     <!--버튼 전체 격리중 격리해제-->
-                                    <div class="outline-button justify-content-end">
-                                        <button type="button" class="btn mb-1 btn-outline-primary">전체</button>
-                                        <button type="button" class="btn mb-1 btn-outline-danger">격리중</button>
-                                        <button type="button" class="btn mb-1 btn-outline-info">격리해제</button>
+                                  <div>
+                                  <input type="checkbox" name="chk_info" value="total" checked="checked"> 전체
+                                  <input type="checkbox" name="chk_info" value="isolated"> 격리중
+                                  <input type="checkbox" name="chk_info" value="un_isolated"> 격리해제
+
+                                  <script>
+                                  /*
+                                  <div class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-primary" name="check" onclick='total();'>
+                                      <input type="checkbox"> 전체
+                                    </label>
+                                    <label class="btn btn-danger" name="check" onclick='isolated();'>
+                                      <input type="checkbox"> 격리중
+                                    </label>
+                                    <label class="btn btn-info" name="check" onclick='un_isolated();'>
+                                      <input type="checkbox"> 격리해제
+                                    </label>
+                                  </div>
+                                  */
+                                      function total(){
+                                        //alert("전체 버튼 클릭");
+                                        // 전체 버튼 클릭 시 구현될 코드들
+                                      }
+                                      function isolated(){
+                                        //alert("격리중 버튼 클릭");
+                                        // 격리중 버튼 클릭 시 구현될 코드들
+                                      }
+                                      function un_isolated(){
+                                        //alert("격리해제 버튼 클릭");
+                                        // 격리해제 버튼 클릭 시 구현될 코드들
+                                      }
+                                  </script>
                                     </div>
                                   </div>
                                   <div class="card-body pb-0 d-flex justify-content-around">
