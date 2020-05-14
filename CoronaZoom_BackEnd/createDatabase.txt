@@ -1,0 +1,70 @@
+CREATE DATABASE testdb;
+
+CREATE TABLE RegionInfo (
+R_id int NOT NULL,
+City varchar(20) NOT NULL,
+County varchar(20),
+PRIMARY KEY (R_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE HospitalInfo (
+H_id int NOT NULL AUTO_INCREMENT,
+H_name varchar(50),
+R_id int,
+Phone VARCHAR(20),
+SignCode VARCHAR(20),
+PRIMARY KEY (H_id),
+FOREIGN KEY (R_id) REFERENCES RegionInfo (R_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE CoronaCityStatus (
+R_id int NOT NULL,
+RegionCase int,
+RegionNow int,
+RegionRecovered int,
+RegionDeath int,
+PRIMARY KEY (R_id),
+FOREIGN KEY (R_id) REFERENCES RegionInfo (R_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE CoronaTotalStatus (
+ID int not null auto_increment,
+UpdateDateTime datetime not null,
+TotalCase int,
+TotalRecovered int,
+NowCase int,
+TotalDeath int,
+NowChecking int,
+PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE ConfirmerInfo (
+C_id int not null,
+Status varchar(20) not null,
+Birthyear int not null,
+Sex varchar(20) not null,
+R_id int not null,
+InfectionRoute varchar(20),
+H_id int,
+primary key(C_id),
+FOREIGN KEY (R_id) REFERENCES RegionInfo (R_id),
+FOREIGN KEY (H_id) REFERENCES HospitalInfo (H_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE ConfirmerVisitedPlaces (
+P_id int not null auto_increment,
+C_id int not null,
+VisitDateTime Datetime,
+Geom point,
+AdditionalInfo varchar(255),
+primary key(P_id),
+FOREIGN KEY (C_id) REFERENCES ConfirmerInfo (C_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO RegionInfo(City, R_id) VALUES('서울특별시',11),('부산광역시',26),('대구광역시',27),('인천광역시',28),('광주광역시',29),('대전광역시',30)
+,('울산광역시',31),('세종특별자치시',36),('경기도',41),('강원도',42),('충청북도',43),('충청남도',44),('전라북도',45),('전라남도',46),('경상북도',47),('경상남도',48),('제주특별자치도',50);
+
+ALTER TABLE HospitalInfo ADD Phone VARCHAR(20);
+ALTER TABLE HospitalInfo ADD SignCode VARCHAR(20);
