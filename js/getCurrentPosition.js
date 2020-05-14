@@ -29,8 +29,8 @@ function onSuccessGeolocation(position) {
 
     var contentString = [
             '<div class="iw_inner">',
-            '   <h5>현재위치</h5>',
-            '   <p>~~~~<br />',
+            '   <br><h5>　현재위치　</h5>',
+            '   <p>　---　<br />',
             '   </p>',
             '</div>'
         ].join('');
