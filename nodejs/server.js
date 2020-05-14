@@ -39,4 +39,6 @@ var dbconnection = {
 	}
 };
 
+dbconnection.init();
+
 module.exports = dbconnection;
