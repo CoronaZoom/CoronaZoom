@@ -284,28 +284,29 @@
                                   <div class="card-body pb-0 d-flex justify-content-around">
                                     <!-- 감염증 현황 끝, 검색 옵션 시작 연령대,성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
                                     <div class ="container align-items-start">
-                                          <h3 class="card-title">검색 옵션</h3>
-                                              <div class="dropdown-button">
-                                                  <div class="btn-group" role="group">
-                                                      <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나이대</button>
-                                                      <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">0~11</a>
-                                                        <a class="dropdown-item" href="#">11~20</a>
-                                                        <a class="dropdown-item" href="#">21~30</a>
-                                                        <a class="dropdown-item" href="#">31~40</a>
-                                                        <a class="dropdown-item" href="#">41~50</a>
-                                                        <a class="dropdown-item" href="#">51~60</a>
-                                                        <a class="dropdown-item" href="#">60 이상</a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="btn-group" role="group">
-                                                      <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">성별</button>
-                                                      <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">남</a>
-                                                        <a class="dropdown-item" href="#">여</a>
-                                                        <a class="dropdown-item" href="#">전체</a>
-                                                      </div>
-                                                  </div>
+                                          <h6 class="card-title">검색 옵션</h6>
+                                                <form>
+                                                  <p>
+                                                  나이:
+                                                  <select name="age">
+                                                        <option value="0">0~11</option>
+                                                        <option value="1">11~20</option>
+                                                        <option value="2">21~30</option>
+                                                        <option value="3">31~40</option>
+                                                        <option value="4">41~50</option>
+                                                        <option value="5">51~60</option>
+                                                        <option value-"6">60 이상</option>
+                                                        <option value-"7" selected>전체</option>
+                                                    </select></p>
+                                                  </form>
+                                                  <form>
+                                                    성별:
+                                                    <select name="sex">
+                                                          <option value="male">남자</option>
+                                                          <option value="female">여자</option>
+                                                          <option value="total" selected>전체</option>
+                                                      </select></p>
+                                                  </form>
                                                     <p>
                                                       <form>
                                                         <h6><label for="datepicker">기간</label></h6>
@@ -316,7 +317,6 @@
                                                   </p>
                                                   <button type="button" class="btn mb-1 btn-outline-info">확인</button>
                                                 </div>
-                                    </div>
                                     <!-- 지도 -->
                                     <div id="map" style="width:300%;height:400px;"></div>
                                     <script>
