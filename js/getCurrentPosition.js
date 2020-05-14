@@ -1,7 +1,9 @@
 function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
     navigator.geolocation.getCurrentPosition(function(position) {
-      alert(position.coords.latitude + ' ' + position.coords.longitude);
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      // 위도 경도 표시 창 alert(latitude + ' ' + longitude);
     }, function(error) {
       console.error(error);
     }, {
@@ -9,8 +11,22 @@ function getLocation() {
       maximumAge: 0,
       timeout: Infinity
     });
+    navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
   } else {
     alert('GPS를 지원하지 않습니다');
   }
 }
+
+function onSuccessGeolocation(position) {
+    var location = new naver.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+
+    map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+    map.setZoom(15); // 지도의 줌 레벨을 변경합니다.
+}
+
+function onErrorGeolocation() {
+    var center = map.getCenter();
+}
+
 getLocation();
