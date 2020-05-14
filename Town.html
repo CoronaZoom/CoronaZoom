@@ -15,7 +15,9 @@
 
     <!-- 네이버 지도 API -->
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4"></script>
-
+    <script type="text/javascript"
+    src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=p8qdphtxe4&submodules=geocoder">
+    </script>
 </head>
 
 <body>
@@ -79,18 +81,6 @@
                   </div>
               </div>
               <div class="header-left">
-                  <!-- 헤드라인 부분 -->
-                <br>
-                <p>
-	                 <MARQUEE direction="up" scrolldelay="1000" width="500" height="30">흐르는 물에 비누로 꼼꼼히 손 씻기<br><br>
-                     기침, 재채기할 때 옷소매로 입과 코 가리기<br><br>
-                     씻지 않은 손으로 눈, 코, 입 만지지 않기<br><br>
-                     의료기관 방문 시 마스크 착용하기<br><br>
-                     사람 많은 곳은 방문 자제<br><br>
-                     발열, 호흡기증상(기침, 목 아픔 등)이 있는 사람과 접촉 피하기
-                   </MARQUEE>
-                   <!-- <input type="search" class="form-control" placeholder="Dashboard" aria-label="Dashboard"> -->
-              </div>
             </div>
               <div class="header-right">
                   <ul class="clearfix">
@@ -170,6 +160,7 @@
                             <div>
                                 <h4 class="mb-1">우리동네 코로나 현황</h4>
                                 <p>위치 정보 받아오기나 주소 검색을 통한 위치 근처 현황을 알려줍니다.</p>
+
                             </div>
                             <ul class="clearfix">
                               <li class="icons dropdown d-none d-md-flex">
@@ -211,8 +202,20 @@
                             </ul>
                           </div>
                           <div class="card-body pb-0 d-flex justify-content-between">
-                            <!-- 지도 -->
-                            <div id="map" style="width:100%;height:600px;"></div>
+                            <!-- 지도 -->post:
+                            <div id="map" style="width:300%;height:400px;"></div>
+                            <script>
+                            var position = new naver.maps.LatLng(37.3595704, 127.105399);
+                            var mapOptions = {
+                              center: position;
+                              zoom: 10
+                            };
+                            var map = new naver.maps.Map('map', mapOptions);
+                            function input()
+                            {
+                              var address = document.getElementById("addresstest").value;
+                            }
+                            </script>
                             <!-- 지도 -->
                           </div>
                           <div class="card-body pb-0 d-flex justify-content-between">
@@ -252,8 +255,11 @@
       Scripts
       ***********************************-->
       <!--위치 정보를 받아오는 getCurrentPosition함수를 사용해 위도 경도를 알아오게 하는 것 까지 구현-->
-      <script src="./js/getCurrentPosition.js"></script>
+    <!--  <script src="./js/geocoder.js"></script> -->
+     <script src="./js/setinfo.js"></script>
+
       <script src="./js/SearchAddress.js"></script>
+      <script src="./js/getCurrentPosition.js"></script>
       <script src="./Resources/plugins/common/common.min.js"></script>
       <script src="./js/custom.min.js"></script>
       <script src="./js/settings.js"></script>
