@@ -27,6 +27,26 @@ function onSuccessGeolocation(position) {
     map.setZoom(15); // 지도의 줌 레벨을 변경합니다.
     marker.setPosition(location);
 
+    var contentString = [
+            '<div class="iw_inner">',
+            '   <h3>현재위치</h3>',
+            '   <p>서울이지롱<br />',
+            '   </p>',
+            '</div>'
+        ].join('');
+
+    var infowindow = new naver.maps.InfoWindow({
+        content: contentString
+    });
+
+    naver.maps.Event.addListener(marker, "click", function(e) {
+        if (infowindow.getMap()) {
+            infowindow.close();
+        } else {
+            infowindow.open(map, marker);
+        }
+    });
+    infowindow.open(map, marker);
 }
 
 function onErrorGeolocation() {
