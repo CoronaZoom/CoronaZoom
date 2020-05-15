@@ -55,7 +55,7 @@ FOREIGN KEY (H_id) REFERENCES HospitalInfo (H_id)
 CREATE TABLE ConfirmerVisitedPlaces (
 P_id int not null auto_increment,
 C_id int not null,
-VisitDateTime Datetime,
+VisitDate Date,
 Geom point,
 AdditionalInfo varchar(255),
 primary key(P_id),
