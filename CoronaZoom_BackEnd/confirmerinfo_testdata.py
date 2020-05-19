@@ -75,7 +75,7 @@ while tmp < 10001:
     select_region = choice(region_ratio)
     select_date = choice(date)
 
-    insert_sent = "INSERT INTO ConfirmerInfo (C_id, Status, Birthyear, Sex, R_id, AdditionalInfo, ConfirmDate) VALUES (" + str(c_id) + ", '" + select_status + "', " + str(birthyear) + ", '" + select_sex + "', " + str(select_region) + ", " + str(select_region//1000) + ', "' + select_date + '");\n'
+    insert_sent = "INSERT INTO ConfirmerInfo (C_id, Status, Birthyear, Sex, R_id, UpperRegId, ConfirmDate) VALUES (" + str(c_id) + ", '" + select_status + "', " + str(birthyear) + ", '" + select_sex + "', " + str(select_region) + ", " + str(select_region//1000) + ', "' + select_date + '");\n'
 
     print(insert_sent)
 

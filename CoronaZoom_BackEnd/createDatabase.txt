@@ -47,6 +47,8 @@ Sex varchar(20) not null,
 R_id int not null,
 InfectionRoute varchar(20),
 H_id int,
+UpperRegId int,
+ConfirmDate DATE,
 primary key(C_id),
 FOREIGN KEY (R_id) REFERENCES RegionInfo (R_id),
 FOREIGN KEY (H_id) REFERENCES HospitalInfo (H_id)
@@ -56,7 +58,8 @@ CREATE TABLE ConfirmerVisitedPlaces (
 P_id int not null auto_increment,
 C_id int not null,
 VisitDate Date,
-Geom point,
+Lat Float,
+Lon Float,
 AdditionalInfo varchar(255),
 primary key(P_id),
 FOREIGN KEY (C_id) REFERENCES ConfirmerInfo (C_id)

@@ -26,13 +26,13 @@ if socket.gethostname()=='DESKTOP-JMPL7B7':
     env_host = 'localhost'
     env_user = 'root'
     env_pw = '0000'
-    database = 'test0514'
+    database = 'test0519'
     env_reg_api_key = os.environ['ENV_REGION_API_KEY']
 else:
     env_host = os.environ['ENV_MYSQL_HOST']
     env_user = os.environ['ENV_MYSQL_USER']
     env_pw = os.environ['ENV_MYSQL_PASSWORD']
-    database = 'zoom';
+    database = 'testDB';
     env_reg_api_key = os.environ['ENV_REGION_API_KEY']
 
 url = 'http://www.coronazoom.kr/Region.html'
@@ -45,7 +45,9 @@ conn = pymysql.connect(host=env_host, user=env_user, password=env_pw,
                        db=database, charset='utf8')
 curs = conn.cursor(pymysql.cursors.DictCursor)
 
-selectQuery = 'SELECT * FROM ConfirmerInfo WHERE AdditionalInfo = 27 LIMIT 1;'
+selectQuery = 'SELECT * FROM ConfirmerInfo'
+selectQuery = 'SELECT * FROM ConfirmerInfo WHERE UpperRegId = 27'
+
 curs.execute(selectQuery)
 rows = curs.fetchall()
 
@@ -101,7 +103,9 @@ for row in rows :
         #건물 Point
         r_point = buildings['response']['result']['featureCollection']['features'][0]['geometry']['coordinates'][0][0][0]
         point = 'Point('+str(r_point[0])+' '+str(r_point[1])+')'
-
+        latitude = r_point[0]
+        longitude = r_point[1]
+        
         #random 날짜
         start = datetime.strptime('2020/5/1', '%Y/%m/%d')
         end = datetime.strptime('2020/5/10', '%Y/%m/%d')
@@ -109,8 +113,8 @@ for row in rows :
         rd_datetime = random_date.date()
 
         #INSERT INTO ConfirmerVisitedPlaces(C_id,VisitDate,Geom) VALUES(1,'2020-05-02 ',ST_GeomFromText('Point(1.0 1.0)'));
-        insertQuery = 'INSERT INTO ConfirmerVisitedPlaces(C_id, VisitDate, Geom) VALUES(%s,%s,ST_GeomFromText(%s))'
-        values = (C_id, rd_datetime, point)
+        insertQuery = 'INSERT INTO ConfirmerVisitedPlaces(C_id, VisitDate, Lat, Lon) VALUES(%s,%s,%s,%s);'
+        values = (C_id, rd_datetime, latitude, longitude)
 
         curs.execute(insertQuery,values)
 
