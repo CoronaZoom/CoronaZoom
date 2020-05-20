@@ -1,0 +1,23 @@
+{
+  "name": "coronazoom",
+  "version": "1.0.0",
+  "description": "* [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4z7l/CoronaZoom_WEB.git"
+  },
+  "author": "Seulgi Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/4z7l/CoronaZoom_WEB/issues"
+  },
+  "homepage": "https://github.com/4z7l/CoronaZoom_WEB#readme",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "express": "~4.13.1"
+  }
+}
