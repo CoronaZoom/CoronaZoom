@@ -330,7 +330,7 @@
                                                   zoom: 8,
                                                   center: new naver.maps.LatLng(36.0207091, 127.9204629)
                                                 });
-
+                                                //json호출인데 잘안됨
                                                 naver.maps.Event.once(map, 'init_stylemap', function() {
                                                   $.ajax({
                                                     url: HOME_PATH +'/data/earthquake.json',
@@ -338,6 +338,7 @@
                                                     success: startDotMap
                                                   });
                                                 });
+                                                //js방식
                                                 var data = [
                                                     new naver.maps.LatLng(37.75,125.4),
                                                     new naver.maps.LatLng(35.42,128.56),
