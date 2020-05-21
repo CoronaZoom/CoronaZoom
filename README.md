@@ -1,6 +1,5 @@
 ### :point_right: 프로젝트 변경 사항 및 진행 상황 :point_left:
 * [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!
-폴리곤 레이어 , 산점도 적용
 <hr/>
 
 CoronaZoom_WEB
