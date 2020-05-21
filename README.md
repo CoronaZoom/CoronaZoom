@@ -1,6 +1,10 @@
 ### :point_right: 프로젝트 변경 사항 및 진행 상황 :point_left:
 * [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!
-
+지도 api 적용 파일 경로 변경
+file:///C:/Git/Coronazoom/CoronaZoom_FrontEnd/Region.html
+file:///C:/Git/Coronazoom/CoronaZoom_FrontEnd/Town.html
+file:///C:/Git/Coronazoom/CoronaZoom_FrontEnd/index.html
+file:///C:/Git/Coronazoom/CoronaZoom_FrontEnd/test.html
 <hr/>
 
 CoronaZoom_WEB
