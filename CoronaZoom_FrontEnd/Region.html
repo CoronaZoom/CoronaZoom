@@ -16,7 +16,11 @@
     <link href="./css/style.css" rel="stylesheet">
 
     <!-- 네이버 지도 API -->
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4&submodules=panorama,geocoder,drawing,visualization"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 
@@ -92,7 +96,6 @@
                      발열, 호흡기증상(기침, 목 아픔 등)이 있는 사람과 접촉 피하기
                    </MARQUEE>
                    <!-- <input type="search" class="form-control" placeholder="Dashboard" aria-label="Dashboard"> -->
-              </div>
               </div>
               <div class="header-right">
                   <ul class="clearfix">
@@ -278,8 +281,10 @@
       <!--**********************************
       Scripts
       ***********************************-->
-      <script src ="./js/minimap.js"></script>
-      <script src="./js/geojson.min.js"></script>
+      <script src="./js/polygon.js"></script> <!-- 지도 폴리곤 -->
+
+      <!-- <script src="./js/minimap.js"></script>-->
+      <!-- <script src="./js/geojson.min.js"></script>-->
       <script src="./Resources/plugins/common/common.min.js"></script>
       <script src="./js/custom.min.js"></script>
       <script src="./js/settings.js"></script>
