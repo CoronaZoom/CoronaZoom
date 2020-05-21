@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <!-- end jquery-->
 
     <script type="text/javascript">
@@ -330,26 +332,27 @@
                                                   zoom: 8,
                                                   center: new naver.maps.LatLng(36.0207091, 127.9204629)
                                                 });
-                                                //json호출인데 잘안됨
+                                                //ajax...
                                                 naver.maps.Event.once(map, 'init_stylemap', function() {
                                                   $.ajax({
                                                     url: HOME_PATH +'/data/earthquake.json',
                                                     dataType: 'json',
+                                                    method:"get",
                                                     success: startDotMap
                                                   });
                                                 });
-                                                //js방식
+                                                function startDotMap(data) {
+                                                  var dotmap = new naver.maps.visualization.DotMap({
+                                                    map: map,
+                                                    data: data.coordinates
+                                                    });
+                                                  }
+                                                //js..
                                                 var data = [
-                                                    new naver.maps.LatLng(37.75,125.4),
-                                                    new naver.maps.LatLng(35.42,128.56),
-                                                    new naver.maps.LatLng(35.57,128.34),
-
-                                                    // (생략)
-
-                                                    new naver.maps.LatLng(36.30,125.9),
-                                                    new naver.maps.LatLng(35.80,128.2),
-                                                    new naver.maps.LatLng(38.70,127.9)
-                                                ];
+                                                     new naver.maps.LatLng(35.42,128.56),
+                                                     new naver.maps.LatLng(35.57,128.34),
+                                                     new naver.maps.LatLng(35.80,128.2),
+                                                 ];
 
                                                 naver.maps.onJSContentLoaded = function() {
                                                     var dotmap = new naver.maps.visualization.DotMap({
@@ -409,6 +412,7 @@
       Scripts
       ***********************************-->
       <!-- 필요한 scrpit 적용-->
+      <script src="./data/earthquake.js"></script>
       <script src="./Resources/plugins/common/common.min.js"></script>
       <script src="./js/custom.min.js"></script>
       <script src="./js/settings.js"></script>
