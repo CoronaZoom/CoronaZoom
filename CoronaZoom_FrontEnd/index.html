@@ -25,8 +25,8 @@
     });</script>
 
     <!-- 네이버 지도 API 적용-->
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4"></script>
-
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4&submodules=panorama,geocoder,drawing,visualization"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=visualization"></script>
     <!-- 캘린더 -->
     <style>
       * {
@@ -321,7 +321,43 @@
                                                   </p>
                                                   <button type="button" class="btn mb-1 btn-outline-info">확인</button>
                                                 </div>
-                                    <!-- 지도 -->
+                                                <div id="map" style="width:300%;height:400px;"></div>
+                                                <script>
+                                                var HOME_PATH = window.HOME_PATH || '.';
+
+                                                var mapDiv = document.getElementById('map');
+                                                var map = new naver.maps.Map(mapDiv, {
+                                                  zoom: 8,
+                                                  center: new naver.maps.LatLng(36.0207091, 127.9204629)
+                                                });
+
+                                                naver.maps.Event.once(map, 'init_stylemap', function() {
+                                                  $.ajax({
+                                                    url: HOME_PATH +'/data/earthquake.json',
+                                                    dataType: 'json',
+                                                    success: startDotMap
+                                                  });
+                                                });
+                                                var data = [
+                                                    new naver.maps.LatLng(37.75,125.4),
+                                                    new naver.maps.LatLng(35.42,128.56),
+                                                    new naver.maps.LatLng(35.57,128.34),
+
+                                                    // (생략)
+
+                                                    new naver.maps.LatLng(36.30,125.9),
+                                                    new naver.maps.LatLng(35.80,128.2),
+                                                    new naver.maps.LatLng(38.70,127.9)
+                                                ];
+
+                                                naver.maps.onJSContentLoaded = function() {
+                                                    var dotmap = new naver.maps.visualization.DotMap({
+                                                        map: map,
+                                                        data: data
+                                                    });
+                                                };
+                                                </script>
+                                    <!-- 지도
                                     <div id="map" style="width:300%;height:400px;"></div>
                                     <script>
                                     var mapOptions = {
