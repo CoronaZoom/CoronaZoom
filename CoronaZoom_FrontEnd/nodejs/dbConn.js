@@ -6,7 +6,7 @@ var dbconnInfo = {
 		host: 'localhost',
 		user: 'root',
 		password: '0000',
-		database: 'test0514',
+		database: 'test0519',
 	},
 	develop:{
 		host     : process.env.ENV_MYSQL_HOST,
@@ -39,6 +39,5 @@ var dbconnection = {
 	}
 };
 
-dbconnection.init();
 
 module.exports = dbconnection;

@@ -2,9 +2,10 @@
   "name": "coronazoom",
   "version": "1.0.0",
   "description": "* [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
