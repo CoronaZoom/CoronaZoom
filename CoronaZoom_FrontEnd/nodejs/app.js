@@ -153,22 +153,41 @@ app.get('/api/RegionInfo', function(req, res){
 
 // 확진자 방문 장소 정보 가져오기
 app.get('/api/ConfirmerVisitedPlaces', function(req, res){
-  dbconn.query('SELECT * from ConfirmerVisitedPlaces;', function(err, rows) {
-    if(err) throw err;
+  const c_id = req.query.C_id;
+  var param = ' WHERE C_id='+c_id+';';
 
-    //console.log('The solution is: ', rows);
-    res.send(rows);
-  });
+  if(c_id!=null) {
+    dbconn.query('SELECT * from ConfirmerVisitedPlaces'+param, function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
+  else {
+    dbconn.query('SELECT * from ConfirmerVisitedPlaces;', function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
+
 });
 
 // 근처 선별진료소 정보 가져오기
 app.get('/api/HospitalInfo', function(req, res){
-  dbconn.query('SELECT * from HospitalInfo;', function(err, rows) {
-    if(err) throw err;
+  const r_id = req.query.R_id;
+  var param = ' WHERE R_id='+r_id+';';
 
-    //console.log('The solution is: ', rows);
-    res.send(rows);
-  });
+  if(r_id!=null) {
+    dbconn.query('SELECT * from HospitalInfo'+param, function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
+  else {
+    dbconn.query('SELECT * from HospitalInfo;', function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
 });
 
 var server = app.listen(3000, function(){
