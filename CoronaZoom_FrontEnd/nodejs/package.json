@@ -1,11 +1,12 @@
 {
   "name": "coronazoom",
   "version": "1.0.0",
-  "description": "* [변경 사항](https://github.com/4z7l/CoronaZoom_WEB/issues/1) 은 여기서!",
+  "description": "CoronaZoom Server",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "nodemon /home/ubuntu/CoronaZoom_WEB/CoronaZoom_FrontEnd/nodejs/app.js",
+    "start:local" : "nodemon C:/Users/Seulgi/CoronaZoom/CoronaZoom_FrontEnd/nodejs/app.js"
   },
   "repository": {
     "type": "git",

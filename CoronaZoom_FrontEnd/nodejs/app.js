@@ -11,64 +11,165 @@ app.get('/', function(req, res){
 
 // 국내 코로나 현황 가져오기
 app.get('/api/CoronaTotalStatus', function(req, res){
-  dbconn.query('SELECT * from CoronaTotalStatus', function(err, rows) {
+  dbconn.query('SELECT * from CoronaTotalStatus;', function(err, rows) {
     if(err) throw err;
 
-    console.log('The solution is: ', rows);
+    //console.log('The solution is: ', rows);
+    res.send(rows);
+  });
+});
+
+//총 확진자 수
+app.get('/api/CoronaTotalStatus/TotalCase', function(req, res){
+  dbconn.query('SELECT SUM(TotalCase) from CoronaTotalStatus;', function(err, rows) {
+    if(err) throw err;
+    res.send(rows);
+  });
+});
+
+//현재(최근) 격리자 수
+app.get('/api/CoronaTotalStatus/NowCase', function(req, res){
+  dbconn.query('SELECT NowCase from CoronaTotalStatus ORDER BY UpdateDateTime DESC LIMIT 1;', function(err, rows) {
+    if(err) throw err;
+    res.send(rows);
+  });
+});
+
+//격리 해제 수
+app.get('/api/CoronaTotalStatus/TotalRecovered', function(req, res){
+  dbconn.query('SELECT SUM(TotalRecovered) from CoronaTotalStatus;', function(err, rows) {
+    if(err) throw err;
+    res.send(rows);
+  });
+});
+
+//검사 진행
+app.get('/api/CoronaTotalStatus/NowChecking', function(req, res){
+  dbconn.query('SELECT NowChecking from CoronaTotalStatus ORDER BY UpdateDateTime DESC LIMIT 1;', function(err, rows) {
+    if(err) throw err;
+    res.send(rows);
+  });
+});
+
+//총 사망자 수
+app.get('/api/CoronaTotalStatus/TotalDeath', function(req, res){
+  dbconn.query('SELECT SUM(TotalDeath) from CoronaTotalStatus;', function(err, rows) {
+    if(err) throw err;
     res.send(rows);
   });
 });
 
 // 지역별 코로나 현황 가져오기
 app.get('/api/CoronaCityStatus', function(req, res){
-  dbconn.query('SELECT * from CoronaCityStatus', function(err, rows) {
-    if(err) throw err;
+  const r_id = req.query.R_id;
+  var param = ' WHERE R_id='+r_id+';';
 
-    console.log('The solution is: ', rows);
-    res.send(rows);
-  });
+  if(r_id!=null) {
+    dbconn.query('SELECT * from CoronaCityStatus'+param, function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
+  else {
+    dbconn.query('SELECT * from CoronaCityStatus;', function(err, rows) {
+      if(err) throw err;
+      res.send(rows);
+    });
+  }
 });
 
 // 확진자 정보 가져오기
+//  /api/ConfirmerInfo?Sex=F&MinBirth=1970&MaxBirth=2000&MinDate=2020-03-01&MaxDate=2020-05-31&Status=격리중
 app.get('/api/ConfirmerInfo', function(req, res){
-  dbconn.query('SELECT * from ConfirmerInfo', function(err, rows) {
-    if(err) throw err;
+  const sex = req.query.Sex;
+  const minBirth = req.query.MinBirth;
+  const maxBirth = req.query.MaxBirth;
+  const minDate = req.query.MinDate;
+  const maxDate = req.query.MaxDate;
+  const status = req.query.Status;
 
-    console.log('The solution is: ', rows);
-    res.send(rows);
-  });
+  var param = ' WHERE ';
+  var param_cnt=0;
+
+  if(sex != null) {
+    param += 'Sex = "' + sex +'"';
+    param_cnt ++;
+  }
+
+  if(minBirth != null && maxBirth != null) {
+    if(param_cnt>=1) {
+      param += ' AND';
+    }
+    param += ' (BirthYear BETWEEN '+ minBirth + ' AND ' + maxBirth + ')';
+    param_cnt ++;
+  }
+
+  if(minDate != null && maxDate != null) {
+    if(param_cnt>=1) {
+      param += ' AND';
+    }
+    param += ' (ConfirmDate BETWEEN "'+ minDate + '" AND "' + maxDate + '")';
+    param_cnt ++;
+  }
+
+  if(status!= null) {
+    if(param_cnt>=1) {
+      param += ' AND';
+    }
+    param += ' Status = "'+ status + '"';
+    param_cnt ++;
+  }
+
+  //res.send(req.query);
+  param+=";";
+
+  if(param_cnt>0) {
+    dbconn.query('SELECT * from ConfirmerInfo'+param, function(err, rows) {
+      if(err) throw err;
+
+      //console.log('The solution is: ', rows);
+      res.send(rows);
+    });
+  }
+  else {
+    dbconn.query('SELECT * from ConfirmerInfo', function(err, rows) {
+      if(err) throw err;
+
+      //console.log('The solution is: ', rows);
+      res.send(rows);
+    });
+  }
 });
 
 // 지역 정보 가져오기
 app.get('/api/RegionInfo', function(req, res){
-  dbconn.query('SELECT * from RegionInfo', function(err, rows) {
+  dbconn.query('SELECT * from RegionInfo;', function(err, rows) {
     if(err) throw err;
 
-    console.log('The solution is: ', rows);
+    //console.log('The solution is: ', rows);
     res.send(rows);
   });
 });
 
 // 확진자 방문 장소 정보 가져오기
 app.get('/api/ConfirmerVisitedPlaces', function(req, res){
-  dbconn.query('SELECT * from ConfirmerVisitedPlaces', function(err, rows) {
+  dbconn.query('SELECT * from ConfirmerVisitedPlaces;', function(err, rows) {
     if(err) throw err;
 
-    console.log('The solution is: ', rows);
+    //console.log('The solution is: ', rows);
     res.send(rows);
   });
 });
 
 // 근처 선별진료소 정보 가져오기
 app.get('/api/HospitalInfo', function(req, res){
-  dbconn.query('SELECT * from HospitalInfo', function(err, rows) {
+  dbconn.query('SELECT * from HospitalInfo;', function(err, rows) {
     if(err) throw err;
 
-    console.log('The solution is: ', rows);
+    //console.log('The solution is: ', rows);
     res.send(rows);
   });
 });
-
 
 var server = app.listen(3000, function(){
     console.log("Express server has started on port 3000");
