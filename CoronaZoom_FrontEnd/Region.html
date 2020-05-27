@@ -211,87 +211,96 @@
            });
       ***********************************-->
 
-        <div class="content-body">
-               <div class="container-fluid mt-3">
-                   <div class="row">
-                       <div class="col-lg-3 col-sm-6">
-                           <div class="card gradient-1">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">총 확진자</h3>
-                                   <div class="d-inline-block">
-                                     <script>
+      <div class="content-body">
+           <div class="container-fluid mt-3">
+               <div class="row">
+                   <div class="col-lg-3 col-sm-6">
+                       <div class="card gradient-1">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">총 확진자</h3>
+                               <div class="d-inline-block">
+                                 <script>
+                                 $(document).ready(function(){
+                                   $.ajax({
+                                      url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalCase.json',
+                                      type: 'GET',
+                                      //dataType: 'json',
+                                      //async: false,
+                                      //cache: false,
+                                      success: function(data){
+                                        //alert("성공!");
 
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                          url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalCase.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-                                            var obj = JSON.parse(data);
-                                            console.log("성공") ;
-                                            //$('#totalnum').html(data);
-                                            //$.each(data, function(){
-                                              //$('#totalnum').append(
-                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
-                                              //);
+                                        var obj = JSON.stringify(data);
+                                        console.log("요청 성공시 호출") ;
 
-                                              $('#totalnum').append(data);
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
-                                     </script>
-                                       <h2 class="text-white" id="totalnum"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
-                                   </div>
+                                        //$.parseJSON
+                                        var list = JSON.parse(data);
+                                        var listLen = list.length;
+                                        var contentStr = "";
+                                        for(var i=0; i<listLen; i++){
+                                            contentStr += list[i]["Sum(TotalCase)"]+"</br>";
+                                        }
+                                        $("#totalnum").append(contentStr);
+
+                                          //$('#totalnum').append(obj.getArray("NowCase"));
+                                        //});
+                                      },
+                                      error: function(request,status,error){
+                                              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                      }
+                                    });
+                                  });
+                                 </script>
+                                   <h2 class="text-white" id="totalnum"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
                                </div>
                            </div>
                        </div>
-                       <div class="col-lg-3 col-sm-6">
-                           <div class="card gradient-2">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">격리중</h3>
-                                   <div class="d-inline-block">
-                                     <script>
+                   </div>
+                   <div class="col-lg-3 col-sm-6">
+                       <div class="card gradient-2">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">격리중</h3>
+                               <div class="d-inline-block">
+                                 <script>
+                                 $(document).ready(function(){
+                                   $.ajax({
+                                      url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/NowCase.json',
+                                      type: 'GET',
+                                      //dataType: 'json',
+                                      //async: false,
+                                      //cache: false,
+                                      success: function(data){
+                                        //alert("성공!");
 
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/NowCase.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-                                            var obj = JSON.parse(data);
-                                            console.log("성공") ;
-                                            //$('#totalnum').html(data);
-                                            //$.each(data, function(){
-                                              //$('#totalnum').append(
-                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
-                                              //);
+                                        var obj = JSON.stringify(data);
+                                        console.log("요청 성공시 호출") ;
 
-                                              $('#nownum').append(data);
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
-                                     </script>
-                                     <h2 class="text-white" id="nownum"></h2>
-                                     <p class="text-white mb-0">(+12)</p>
-                                   </div>
+                                        //$.parseJSON
+                                        var list = JSON.parse(data);
+                                        var listLen = list.length;
+                                        var contentStr = "";
+                                        for(var i=0; i<listLen; i++){
+                                            contentStr += list[i].NowCase+"</br>";
+                                        }
+                                        $("#nownum").append(contentStr);
+
+                                          //$('#totalnum').append(obj.getArray("NowCase"));
+                                        //});
+                                      },
+                                      error: function(request,status,error){
+                                              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                      }
+                                    });
+                                  });
+                                 </script>
+                                   <h2 class="text-white" id="nownum"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
                                </div>
                            </div>
                        </div>
+                   </div>
+
                        <div class="col-lg-3 col-sm-6">
                            <div class="card gradient-6">
                                <div class="card-body">
@@ -308,22 +317,26 @@
                                           //cache: false,
                                           success: function(data){
                                             //alert("성공!");
-                                            var obj = JSON.parse(data);
-                                            console.log("성공") ;
-                                            //$('#totalnum').html(data);
-                                            //$.each(data, function(){
-                                              //$('#totalnum').append(
-                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
-                                              //);
+                                              var obj = JSON.stringify(data);
+                                              console.log("요청 성공시 호출") ;
 
-                                              $('#totalrecov').append(data);
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
+                                              //$.parseJSON
+                                              var list = JSON.parse(data);
+                                              var listLen = list.length;
+                                              var contentStr = "";
+                                              for(var i=0; i<listLen; i++){
+                                                contentStr += list[i].NowCase+"</br>";
+                                              }
+                                              $("#totalrecov").append(contentStr);
+
+                                              //$('#totalnum').append(obj.getArray("NowCase"));
+                                              //});
+                                              },
+                                              error: function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                              }
+                                            });
+                                          });
                                      </script>
                                        <h2 class="text-white" id="totalrecov"></h2>
                                        <p class="text-white mb-0">(+12)</p>
@@ -346,22 +359,26 @@
                                           //cache: false,
                                           success: function(data){
                                             //alert("성공!");
-                                            var obj = JSON.parse(data);
-                                            console.log("성공") ;
-                                            //$('#totalnum').html(data);
-                                            //$.each(data, function(){
-                                              //$('#totalnum').append(
-                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
-                                              //);
+                                              var obj = JSON.stringify(data);
+                                              console.log("요청 성공시 호출") ;
 
-                                              $('#death').append(data);
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
+                                              //$.parseJSON
+                                              var list = JSON.parse(data);
+                                              var listLen = list.length;
+                                              var contentStr = "";
+                                              for(var i=0; i<listLen; i++){
+                                                contentStr += list[i].NowCase+"</br>";
+                                              }
+                                              $("#death").append(contentStr);
+
+                                              //$('#totalnum').append(obj.getArray("NowCase"));
+                                              //});
+                                              },
+                                              error: function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                              }
+                                            });
+                                          });
                                      </script>
                                      <h2 class="text-black" id="death"></h2>
                                        <p class="text-black mb-0">(+12)</p>
