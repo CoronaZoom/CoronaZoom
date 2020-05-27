@@ -21,6 +21,17 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase"></script>
+    <script>
+    function callback(data){
+      alert(data);
+    }
+    </script>
+
+    <script type="text/javascript">
+      var url = "http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000";
+      </script>
 
 </head>
 
@@ -88,7 +99,7 @@
                   <!-- 헤드라인 부분 -->
                 <br>
                 <p>
-	                 <MARQUEE direction="up" scrolldelay="1000" width="500" height="30">흐르는 물에 비누로 꼼꼼히 손 씻기<br><br>
+                    <MARQUEE direction="up" scrolldelay="1000" width="500" height="30">흐르는 물에 비누로 꼼꼼히 손 씻기<br><br>
                      기침, 재채기할 때 옷소매로 입과 코 가리기<br><br>
                      씻지 않은 손으로 눈, 코, 입 만지지 않기<br><br>
                      의료기관 방문 시 마스크 착용하기<br><br>
@@ -177,6 +188,27 @@
 
       <!--**********************************
           Content body start
+
+          $.ajax({
+             url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase.json',                                                    dataType: 'json',
+             type: 'GET',
+             //dataType: 'json',
+             //async: false,
+             //cache: false,
+             success: function(data){
+               alert("성공!");
+               var obj = JSON.parse(data);
+               console.log("요청 성공시 호출") ;
+               //$.each(data, function(){
+               //  $('#totalnum').append(
+               //    "<tr><td>" + this["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
+               //  );
+               //});
+             },
+             error: function(request,status,error){
+                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+             }
+           });
       ***********************************-->
 
         <div class="content-body">
@@ -187,7 +219,35 @@
                                <div class="card-body">
                                    <h3 class="card-title text-white">총 확진자</h3>
                                    <div class="d-inline-block">
-                                       <h2 class="text-white">1234</h2>
+                                     <script>
+
+                                     $(document).ready(function(){
+                                       $.ajax({
+                                          url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalCase.json',
+                                          type: 'GET',
+                                          //dataType: 'json',
+                                          //async: false,
+                                          //cache: false,
+                                          success: function(data){
+                                            //alert("성공!");
+                                            var obj = JSON.parse(data);
+                                            console.log("성공") ;
+                                            //$('#totalnum').html(data);
+                                            //$.each(data, function(){
+                                              //$('#totalnum').append(
+                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
+                                              //);
+
+                                              $('#totalnum').append(data);
+                                            //});
+                                          },
+                                          error: function(request,status,error){
+                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                          }
+                                        });
+                                      });
+                                     </script>
+                                       <h2 class="text-white" id="totalnum"></h2>
                                        <p class="text-white mb-0">(+12)</p>
                                    </div>
                                </div>
@@ -198,8 +258,36 @@
                                <div class="card-body">
                                    <h3 class="card-title text-white">격리중</h3>
                                    <div class="d-inline-block">
-                                       <h2 class="text-white">1234</h2>
-                                       <p class="text-white mb-0">(+12)</p>
+                                     <script>
+
+                                     $(document).ready(function(){
+                                       $.ajax({
+                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/NowCase.json',
+                                          type: 'GET',
+                                          //dataType: 'json',
+                                          //async: false,
+                                          //cache: false,
+                                          success: function(data){
+                                            //alert("성공!");
+                                            var obj = JSON.parse(data);
+                                            console.log("성공") ;
+                                            //$('#totalnum').html(data);
+                                            //$.each(data, function(){
+                                              //$('#totalnum').append(
+                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
+                                              //);
+
+                                              $('#nownum').append(data);
+                                            //});
+                                          },
+                                          error: function(request,status,error){
+                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                          }
+                                        });
+                                      });
+                                     </script>
+                                     <h2 class="text-white" id="nownum"></h2>
+                                     <p class="text-white mb-0">(+12)</p>
                                    </div>
                                </div>
                            </div>
@@ -209,7 +297,35 @@
                                <div class="card-body">
                                    <h3 class="card-title text-white">격리해제</h3>
                                    <div class="d-inline-block">
-                                       <h2 class="text-white">1234</h2>
+                                     <script>
+
+                                     $(document).ready(function(){
+                                       $.ajax({
+                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalRecovered.json',
+                                          type: 'GET',
+                                          //dataType: 'json',
+                                          //async: false,
+                                          //cache: false,
+                                          success: function(data){
+                                            //alert("성공!");
+                                            var obj = JSON.parse(data);
+                                            console.log("성공") ;
+                                            //$('#totalnum').html(data);
+                                            //$.each(data, function(){
+                                              //$('#totalnum').append(
+                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
+                                              //);
+
+                                              $('#totalrecov').append(data);
+                                            //});
+                                          },
+                                          error: function(request,status,error){
+                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                          }
+                                        });
+                                      });
+                                     </script>
+                                       <h2 class="text-white" id="totalrecov"></h2>
                                        <p class="text-white mb-0">(+12)</p>
                                    </div>
                                </div>
@@ -220,7 +336,34 @@
                                <div class="card-body">
                                    <h3 class="card-title text-black">사망</h3>
                                    <div class="d-inline-block">
-                                       <h2 class="text-black">1234</h2>
+                                     <script>
+                                     $(document).ready(function(){
+                                       $.ajax({
+                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalDeath.json',
+                                          type: 'GET',
+                                          //dataType: 'json',
+                                          //async: false,
+                                          //cache: false,
+                                          success: function(data){
+                                            //alert("성공!");
+                                            var obj = JSON.parse(data);
+                                            console.log("성공") ;
+                                            //$('#totalnum').html(data);
+                                            //$.each(data, function(){
+                                              //$('#totalnum').append(
+                                              //  "<tr><td>" + data["SUM(TotalCase)"] + "</td><td>" +"</td></tr>"
+                                              //);
+
+                                              $('#death').append(data);
+                                            //});
+                                          },
+                                          error: function(request,status,error){
+                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                          }
+                                        });
+                                      });
+                                     </script>
+                                     <h2 class="text-black" id="death"></h2>
                                        <p class="text-black mb-0">(+12)</p>
                                    </div>
                                </div>
