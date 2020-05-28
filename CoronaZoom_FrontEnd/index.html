@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!--site name-->
     <title>CORONAZOOM</title>
-    <!-- Favicon icon --> <!--사이트 아이콘은 아직 못만들어서 원래 부트스트랩걸로 설정해놨습니다.-->
+    <!-- Favicon icon 크롬 탭에 뜨는 아이콘 -->
     <link rel="icon" type="image/png" sizes="16x16" href="./Resources/images/favicon.png">
-    <!-- Pignose Calender --> <!--나중에 캘린더를 설정하기 위해서-->
+    <!-- Pignose Calender 부트스트랩 캘린더 -->
     <link href="./Resources/plugins/pg-calendar/pignose.calendar.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
@@ -17,23 +17,14 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
     <!-- end jquery-->
 
+    <!-- 캘린더 -->
     <script type="text/javascript">
     $(function(){
       $("#datepicker").datepicker();
     });</script>
 
-    <!-- 네이버 지도 API 적용-->
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4&submodules=panorama,geocoder,drawing,visualization"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=visualization"></script>
-    <!-- 캘린더 -->
     <style>
       * {
         font-size: 16px;
@@ -42,14 +33,21 @@
     </style>
     <!-- 캘린더 -->
 
-    <script type="text/javascript" src="http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase"></script>
-    <script>
-    function callback(data){
-      alert(data);
-    }
+    <!-- 네이버 지도 API 적용-->
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4&submodules=panorama,geocoder,drawing,visualization"></script>
+
+    <!-- JSON 파싱 -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script type="text/javascript">
+      var url = "http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000";
     </script>
-
-
+    <!-- JSON 파싱 -->
 </head>
 
 <body>
@@ -72,11 +70,9 @@
       Main wrapper start
   ***********************************-->
   <div id="main-wrapper">
-
       <!--**********************************
           Nav header start
       ***********************************-->
-
       <!-- nav-header는 맨 왼쪽 상단에 코로나줌의 아이콘,로고로 설정했고 이를 클릭시에는 index.html로 이동함-->
       <div class="nav-header">
           <div class="brand-logo">
@@ -104,7 +100,6 @@
                       <span class="toggle-icon"><i class="icon-menu"></i></span>
                   </div>
               </div>
-
               <!-- header의 왼쪽에는 안전수칙, 주요뉴스 헤드라인을 구현할 예정임-->
               <div class="header-left">
                 <!-- 헤드라인 부분 -->
@@ -117,9 +112,7 @@
                      사람 많은 곳은 방문 자제<br><br>
                      발열, 호흡기증상(기침, 목 아픔 등)이 있는 사람과 접촉 피하기
                    </MARQUEE>
-                   <!-- <input type="search" class="form-control" placeholder="Dashboard" aria-label="Dashboard"> -->
               </div>
-
               <!-- header의 오른쪽에는 알람기능이 있고 이는 드롭다운박스 형태로 알람 아이콘을 클릭하면 세부 내용을 알 수 있게 만듦-->
               <div class="header-right">
                   <ul class="clearfix">
@@ -190,359 +183,147 @@
       <!--**********************************
           Content body start
       ***********************************-->
-      <!-- 전반적인 감염증 현황을 숫자로 쉽게 보여주는 카드형 배열 설정 시작-->
+      <!-- 전반적인 감염증 현황을 숫자로 쉽게 보여주는 카드형 배열 설정 시작 -->
         <div class="content-body">
-               <div class="container-fluid mt-3">
-                   <div class="row">
-                       <div class="col-lg-2 col-sm-3">
-                           <div class="card gradient-1">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">총 확진자</h3>
-                                   <div class="d-inline-block">
-                                     <script>
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                          url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalCase.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-
-                                            var obj = JSON.stringify(data);
-                                            console.log("요청 성공시 호출") ;
-
-                                            //$.parseJSON
-                                            var list = JSON.parse(data);
-                                            var listLen = list.length;
-                                            var contentStr = "";
-                                            for(var i=0; i<listLen; i++){
-                                                contentStr += list[i]["Sum(TotalCase)"]+"</br>";
-                                            }
-                                            $("#totalnum").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
-                                     </script>
-                                       <h2 class="text-white" id="totalnum"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 col-sm-3">
-                           <div class="card gradient-2">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">격리중</h3>
-                                   <div class="d-inline-block">
-                                     <script>
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                          url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/NowCase.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-
-                                            var obj = JSON.stringify(data);
-                                            console.log("요청 성공시 호출") ;
-
-                                            //$.parseJSON
-                                            var list = JSON.parse(data);
-                                            var listLen = list.length;
-                                            var contentStr = "";
-                                            for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].NowCase+"</br>";
-                                            }
-                                            $("#nownum").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
-                                     </script>
-                                       <h2 class="text-white" id="nownum"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 col-sm-3">
-                           <div class="card gradient-6">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">격리해제</h3>
-                                   <div class="d-inline-block">
-                                     <script>
-
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalRecovered.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-                                              var obj = JSON.stringify(data);
-                                              console.log("요청 성공시 호출") ;
-
-                                              //$.parseJSON
-                                              var list = JSON.parse(data);
-                                              var listLen = list.length;
-                                              var contentStr = "";
-                                              for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].NowCase+"</br>";
-                                              }
-                                              $("#totalrecov").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                              //});
-                                              },
-                                              error: function(request,status,error){
-                                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                              }
-                                            });
-                                          });
-                                     </script>
-                                       <h2 class="text-white" id="totalrecov"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 col-sm-3">
-                           <div class="card gradient-3">
-                               <div class="card-body">
-                                   <h3 class="card-title text-white">검사진행</h3>
-                                   <div class="d-inline-block">
-                                     <script>
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                          url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowChecking',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-
-                                            var obj = JSON.stringify(data);
-                                            console.log("요청 성공시 호출") ;
-
-                                            //$.parseJSON
-                                            var list = JSON.parse(data);
-                                            var listLen = list.length;
-                                            var contentStr = "";
-                                            for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].nowchecking+"</br>";
-                                            }
-                                            $("#nowchecking").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                            //});
-                                          },
-                                          error: function(request,status,error){
-                                                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                          }
-                                        });
-                                      });
-                                     </script>
-                                       <h2 class="text-white" id="nowchecking"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 col-sm-3">
-                           <div class="card gradient-10">
-                               <div class="card-body">
-                                   <h3 class="card-title text-black">사망</h3>
-                                   <div class="d-inline-block">
-                                     <script>
-                                     $(document).ready(function(){
-                                       $.ajax({
-                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalDeath.json',
-                                          type: 'GET',
-                                          //dataType: 'json',
-                                          //async: false,
-                                          //cache: false,
-                                          success: function(data){
-                                            //alert("성공!");
-                                              var obj = JSON.stringify(data);
-                                              console.log("요청 성공시 호출") ;
-
-                                              //$.parseJSON
-                                              var list = JSON.parse(data);
-                                              var listLen = list.length;
-                                              var contentStr = "";
-                                              for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].NowCase+"</br>";
-                                              }
-                                              $("#death").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                              //});
-                                              },
-                                              error: function(request,status,error){
-                                                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                              }
-                                            });
-                                          });
-                                     </script>
-                                     <h2 class="text-black" id="death"></h2>
-                                       <p class="text-black mb-0">(+12)</p>
-                                   </div>
+           <div class="container-fluid mt-3">
+               <div class="row">
+                   <div class="col-lg-2 col-sm-3">
+                       <div class="card gradient-1">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">총 확진자</h3>
+                               <div class="d-inline-block">
+                                   <h2 class="text-white" id="totalnum"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
                                </div>
                            </div>
                        </div>
                    </div>
-
+                   <div class="col-lg-2 col-sm-3">
+                       <div class="card gradient-2">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">격리중</h3>
+                               <div class="d-inline-block">
+                                   <h2 class="text-white" id="nownum"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-lg-2 col-sm-3">
+                       <div class="card gradient-6">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">격리해제</h3>
+                               <div class="d-inline-block">
+                                   <h2 class="text-white" id="totalrecov"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-lg-2 col-sm-3">
+                       <div class="card gradient-3">
+                           <div class="card-body">
+                               <h3 class="card-title text-white">검사진행</h3>
+                               <div class="d-inline-block">
+                                   <h2 class="text-white" id="nowchecking"></h2>
+                                   <p class="text-white mb-0">(+12)</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-lg-2 col-sm-3">
+                       <div class="card gradient-10">
+                           <div class="card-body">
+                               <h3 class="card-title text-black">사망</h3>
+                               <div class="d-inline-block">
+                                 <h2 class="text-black" id="death"></h2>
+                                   <p class="text-black mb-0">(+12)</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
               <!-- 검색옵션 끝, 지도 부분 시작-->
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="row">
-                          <div class="col-12">
-                              <div class="card">
-                                <div class="card-body pb-0 d-flex justify-content-between">
-                                  <div>
-                                      <h3 class="mb-1">국내코로나현황</h3>
-                                      <p>국내 코로나 현황을 알려줍니다. 이부분은 산점도로 대체할 것입니다.</p>
-                                      <!--<h3 class="m-0">10,423</h3>-->
-                                  </div>
-                                    <!--버튼 전체 격리중 격리해제-->
-                                  <div>
-                                  <input type="checkbox" name="chk_info" value="total" checked="checked"> 전체
-                                  <input type="checkbox" name="chk_info" value="isolated"> 격리중
-                                  <input type="checkbox" name="chk_info" value="un_isolated"> 격리해제
-
-                                  <script>
-                                  /*
-                                  <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-primary" name="check" onclick='total();'>
-                                      <input type="checkbox"> 전체
-                                    </label>
-                                    <label class="btn btn-danger" name="check" onclick='isolated();'>
-                                      <input type="checkbox"> 격리중
-                                    </label>
-                                    <label class="btn btn-info" name="check" onclick='un_isolated();'>
-                                      <input type="checkbox"> 격리해제
-                                    </label>
-                                  </div>
-                                  */
-                                      function total(){
-                                        //alert("전체 버튼 클릭");
-                                        // 전체 버튼 클릭 시 구현될 코드들
-                                      }
-                                      function isolated(){
-                                        //alert("격리중 버튼 클릭");
-                                        // 격리중 버튼 클릭 시 구현될 코드들
-                                      }
-                                      function un_isolated(){
-                                        //alert("격리해제 버튼 클릭");
-                                        // 격리해제 버튼 클릭 시 구현될 코드들
-                                      }
-                                  </script>
-                                    </div>
-                                  </div>
-                                  <div class="card-body pb-0 d-flex justify-content-around">
-                                    <!-- 감염증 현황 끝, 검색 옵션 시작 연령대,성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
-                                    <div class ="container align-items-start">
-                                          <h6 class="card-title">검색 옵션</h6>
-                                                <form>
-                                                  <p>
-                                                  나이:
-                                                  <select name="age">
-                                                        <option value="0">0~11</option>
-                                                        <option value="1">11~20</option>
-                                                        <option value="2">21~30</option>
-                                                        <option value="3">31~40</option>
-                                                        <option value="4">41~50</option>
-                                                        <option value="5">51~60</option>
-                                                        <option value-"6">60 이상</option>
-                                                        <option value-"7" selected>전체</option>
-                                                    </select></p>
-                                                  </form>
-                                                  <form>
-                                                    성별:
-                                                    <select name="sex">
-                                                          <option value="male">남자</option>
-                                                          <option value="female">여자</option>
-                                                          <option value="total" selected>전체</option>
-                                                      </select></p>
-                                                  </form>
-                                                    <p>
-                                                      <form>
-                                                        <h6><label for="datepicker">기간</label></h6>
-                                                          <p>시작: <input type="date"  id='currentDate'></p>
-                                                          <p>　끝: <input type="date"  id='currentDate'></p>
-                                                          <!-- <p><input type="submit" value="Submit"></p> -->
-                                                      </form>
-                                                  </p>
-                                                  <button type="button" class="btn mb-1 btn-outline-info">확인</button>
-                                                </div>
-                                                <div id="map" style="width:300%;height:400px;"></div>
-                                                <script>
-                                                var HOME_PATH = window.HOME_PATH || '.';
-
-                                                var mapDiv = document.getElementById('map');
-                                                var map = new naver.maps.Map(mapDiv, {
-                                                  zoom: 8,
-                                                  center: new naver.maps.LatLng(36.0207091, 127.9204629)
-                                                });
-                                                //ajax...
-                                                naver.maps.Event.once(map, 'init_stylemap', function() {
-                                                  $.ajax({
-                                                    url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/earthquake.json',                                                    dataType: 'json',
-                                                    method:"get",
-                                                    success: startDotMap
-                                                  });
-                                                });
-                                                function startDotMap(data) {
-                                                  var dotmap = new naver.maps.visualization.DotMap({
-                                                    map: map,
-                                                    data: data.coordinates
-                                                    });
-                                                  }
-                                                </script>
-                                    <!-- 지도
-                                    <div id="map" style="width:300%;height:400px;"></div>
-                                    <script>
-                                    var mapOptions = {
-                                      center: new naver.maps.LatLng(37.3595704, 127.105399),
-                                      zoom: 10
-                                    };
-                                    var map = new naver.maps.Map('map', mapOptions);
-                                    </script>
-                                    <!-- 지도 -->
-
-                                  </div>
-                                  <div class="card-body pb-0 d-flex justify-content-around">
-                                    <div class="w-100 mr-2">
-                                        <p>타임라인바 위치할 예정</p>
-                                    </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
+               <div class="row">
+                 <div class="col-lg-12">
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="card">
+                               <div class="card-body pb-0 d-flex justify-content-between">
+                                 <div>
+                                     <h3 class="mb-1">국내코로나현황</h3>
+                                     <p>국내 코로나 현황을 알려줍니다.</p>
+                                 </div>
+                                 <div> <!--체크박스: 전체 격리중 격리해제-->
+                                 <input type="checkbox" name="chk_info" value="total" checked="checked"> 전체
+                                 <input type="checkbox" name="chk_info" value="isolated"> 격리중
+                                 <input type="checkbox" name="chk_info" value="un_isolated"> 격리해제
+                                 <script>
+                                   function total(){
+                                     //alert("전체 버튼 클릭");
+                                     // 전체 버튼 클릭 시 구현될 코드들
+                                   }
+                                   function isolated(){
+                                     //alert("격리중 버튼 클릭");
+                                     // 격리중 버튼 클릭 시 구현될 코드들
+                                   }
+                                   function un_isolated(){
+                                     //alert("격리해제 버튼 클릭");
+                                     // 격리해제 버튼 클릭 시 구현될 코드들
+                                   }
+                                 </script>
+                                 </div>
+                               </div>
+                               <div class="card-body pb-0 d-flex justify-content-around">
+                                 <!-- 감염증 현황 끝, 검색 옵션 시작 연령대, 성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
+                                 <div class ="container align-items-start">
+                                     <h6 class="card-title">검색 옵션</h6>
+                                     <form>
+                                       <p>
+                                       나이:
+                                       <select name="age">
+                                             <option value="0">0~11</option>
+                                             <option value="1">11~20</option>
+                                             <option value="2">21~30</option>
+                                             <option value="3">31~40</option>
+                                             <option value="4">41~50</option>
+                                             <option value="5">51~60</option>
+                                             <option value-"6">60 이상</option>
+                                             <option value-"7" selected>전체</option>
+                                       </select></p>
+                                     </form>
+                                     <form>
+                                       성별:
+                                       <select name="sex">
+                                             <option value="male">남자</option>
+                                             <option value="female">여자</option>
+                                             <option value="total" selected>전체</option>
+                                         </select></p>
+                                     </form>
+                                     <p>
+                                       <form>
+                                         <h6><label for="datepicker">기간</label></h6>
+                                           <p>시작: <input type="date"  id='currentDate'></p>
+                                           <p>　끝: <input type="date"  id='currentDate'></p>
+                                           <!-- <p><input type="submit" value="Submit"></p> -->
+                                      </form>
+                                     </p>
+                                     <button type="button" class="btn mb-1 btn-outline-info">확인</button>
+                                 </div>
+                                 <div id="map" style="width:300%;height:400px;"></div>
+                               </div>
+                               <div class="card-body pb-0 d-flex justify-content-around">
+                                 <div class="w-100 mr-2">
+                                     <p>타임라인바 위치할 예정</p>
+                                 </div>
+                               </div>
+                             </div>
+                         </div>
+                    </div>
+               </div>
           </div>
-          <!-- #/ container -->
       </div>
+    </div> <!-- content 끝 -->
       <!--**********************************
           Content body end
       ***********************************-->
@@ -550,31 +331,42 @@
       <!--**********************************
           Footer start
       ***********************************-->
-      <!--footer부분에 저작권 표시-->
+      <!-- 저작권 표시 -->
       <div class="footer">
           <div class="copyright">
               <p>Copyright &copy; Designed & Developed by 세종대학교 소프트웨어학과 캡스톤 3조 2020</p>
           </div>
       </div>
+      <!-- 저작권 표시 -->
       <!--**********************************
           Footer end
       ***********************************-->
+
       </div>
       <!--**********************************
       Main wrapper end
       ***********************************-->
 
+
       <!--**********************************
-      Scripts
+      Scripts   (필요한 scrpit 적용)
       ***********************************-->
-      <!-- 필요한 scrpit 적용-->
+
+      <!-- 지도 dot -->
+      <script src="./js/dotmap.js"></script>
+      <!-- 카드 parsing -->
+      <script src="./js/card.js"></script>
+      <!-- CORS 정책 플러그 js 파일 -->
+      <script type="text/javascript" src="./Resources/jquery.ajax-cross-origin.min.js"></script>
+      <!-- 네이버에서 제공한 earthquake.js 파일 -->
       <script src="./data/earthquake.js"></script>
+
+      <!-- 부트스트랩 js -->
       <script src="./Resources/plugins/common/common.min.js"></script>
       <script src="./js/custom.min.js"></script>
       <script src="./js/settings.js"></script>
       <script src="./js/gleek.js"></script>
       <script src="./js/styleSwitcher.js"></script>
-
       <!-- Chartjs -->
       <script src="./Resources/plugins/chart.js/Chart.bundle.min.js"></script>
       <!-- Circle progress -->
@@ -592,10 +384,9 @@
       <!-- ChartistJS -->
       <script src="./Resources/plugins/chartist/js/chartist.min.js"></script>
       <script src="./Resources/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
-
+      <!-- dashboardjs -->
       <script src="./Resources/js/dashboard/dashboard-1.js"></script>
+      <!-- 부트스트랩 js -->
 
       <!-- 달력 -->
       <script>document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;</script>
