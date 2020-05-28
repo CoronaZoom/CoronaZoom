@@ -1,7 +1,11 @@
 var express = require('express');
 var dbConObj = require('./dbConn.js');
 var dbconn = dbConObj.init();
-var app = express();
+var cors = require('cors');
+
+var app = express(); 
+
+app.use(cors());
 
 app.get('/', function(req, res){
   res.send('Root');
