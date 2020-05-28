@@ -59,16 +59,6 @@
     <!--**********************************
         Nav header start
     ***********************************-->
-
-    <!-- 로고 사진 적용하려는데 가운데 정렬은 못했네요ㅠ -->
-    <!-- nav-header는 맨 왼쪽 상단에 코로나줌의 아이콘,로고로 설정했고 이를 클릭시에는 index.html로 이동함-->
-    <!-- <div class="nav-header">
-        <div class="brand-logo">
-            <a href="index.html">
-                <b class="logo-abbr"><img src="./Resources/images/logo.jpg" alt=""> </b>
-            </a>
-        </div>
-    </div> -->
     <div class="nav-header">
         <div class="brand-logo">
             <a href="index.html">
@@ -222,28 +212,15 @@
                                  <script>
                                  $(document).ready(function(){
                                    $.ajax({
-                                      url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalCase.json',
+                                      url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase',
                                       type: 'GET',
+                                      crossOrigin: true,
                                       //dataType: 'json',
                                       //async: false,
                                       //cache: false,
                                       success: function(data){
                                         //alert("성공!");
-
-                                        var obj = JSON.stringify(data);
-                                        console.log("요청 성공시 호출") ;
-
-                                        //$.parseJSON
-                                        var list = JSON.parse(data);
-                                        var listLen = list.length;
-                                        var contentStr = "";
-                                        for(var i=0; i<listLen; i++){
-                                            contentStr += list[i]["Sum(TotalCase)"]+"</br>";
-                                        }
-                                        $("#totalnum").append(contentStr);
-
-                                          //$('#totalnum').append(obj.getArray("NowCase"));
-                                        //});
+                                          $("#totalnum").append(data[0]['SUM(TotalCase)']);
                                       },
                                       error: function(request,status,error){
                                               alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -264,34 +241,40 @@
                                <div class="d-inline-block">
                                  <script>
                                  $(document).ready(function(){
+                                   /*$.getJSON('http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowCase',
+                                     function(data){
+                                       console.log(data[0]['NowCase']);
+                                       $("#nownum").append(data[0]['NowCase']);
+                                     }
+                                   );*/
                                    $.ajax({
-                                      url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/NowCase.json',
+                                     url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowCase',
                                       type: 'GET',
+                                      crossOrigin: true,
                                       //dataType: 'json',
                                       //async: false,
                                       //cache: false,
                                       success: function(data){
                                         //alert("성공!");
+                                          //var obj = JSON.stringify(data);
+                                          //console.log("요청 성공시 호출") ;
 
-                                        var obj = JSON.stringify(data);
-                                        console.log("요청 성공시 호출") ;
-
-                                        //$.parseJSON
-                                        var list = JSON.parse(data);
-                                        var listLen = list.length;
-                                        var contentStr = "";
-                                        for(var i=0; i<listLen; i++){
-                                            contentStr += list[i].NowCase+"</br>";
-                                        }
-                                        $("#nownum").append(contentStr);
+                                          //$.parseJSON
+                                        //  var list = JSON.parse(data);
+                                        //  var listLen = list.length;
+                                        //  var contentStr = "";
+                                        //  for(var i=0; i<listLen; i++){
+                                        //    contentStr += list[i].NowCase+"</br>";
+                                        //  }
+                                          $("#nownum").append(data[0]['NowCase']);
 
                                           //$('#totalnum').append(obj.getArray("NowCase"));
-                                        //});
-                                      },
-                                      error: function(request,status,error){
-                                              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                      }
-                                    });
+                                          //});
+                                          },
+                                          error: function(request,status,error){
+                                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                          }
+                                        });
                                   });
                                  </script>
                                    <h2 class="text-white" id="nownum"></h2>
@@ -310,27 +293,15 @@
 
                                      $(document).ready(function(){
                                        $.ajax({
-                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalRecovered.json',
+                                         url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalRecovered',
                                           type: 'GET',
+                                          crossOrigin: true,
                                           //dataType: 'json',
                                           //async: false,
                                           //cache: false,
                                           success: function(data){
                                             //alert("성공!");
-                                              var obj = JSON.stringify(data);
-                                              console.log("요청 성공시 호출") ;
-
-                                              //$.parseJSON
-                                              var list = JSON.parse(data);
-                                              var listLen = list.length;
-                                              var contentStr = "";
-                                              for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].NowCase+"</br>";
-                                              }
-                                              $("#totalrecov").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                              //});
+                                              $("#totalrecov").append(data[0]['SUM(TotalRecovered)']);
                                               },
                                               error: function(request,status,error){
                                                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -352,27 +323,15 @@
                                      <script>
                                      $(document).ready(function(){
                                        $.ajax({
-                                         url: 'https://raw.githubusercontent.com/4z7l/CoronaZoom_WEB/master/CoronaZoom_FrontEnd/testdata/TotalDeath.json',
+                                         url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalDeath',
                                           type: 'GET',
+                                          crossOrigin: true,
                                           //dataType: 'json',
                                           //async: false,
                                           //cache: false,
                                           success: function(data){
                                             //alert("성공!");
-                                              var obj = JSON.stringify(data);
-                                              console.log("요청 성공시 호출") ;
-
-                                              //$.parseJSON
-                                              var list = JSON.parse(data);
-                                              var listLen = list.length;
-                                              var contentStr = "";
-                                              for(var i=0; i<listLen; i++){
-                                                contentStr += list[i].NowCase+"</br>";
-                                              }
-                                              $("#death").append(contentStr);
-
-                                              //$('#totalnum').append(obj.getArray("NowCase"));
-                                              //});
+                                            $("#death").append(data[0]['SUM(TotalDeath)']);
                                               },
                                               error: function(request,status,error){
                                                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -442,6 +401,8 @@
       Scripts
       ***********************************-->
       <script src="./js/polygon.js"></script> <!-- 지도 폴리곤 -->
+
+      <script type="text/javascript" src="./Resources/jquery.ajax-cross-origin.min.js"></script>
 
       <!-- <script src="./js/minimap.js"></script>-->
       <!-- <script src="./js/geojson.min.js"></script>-->
