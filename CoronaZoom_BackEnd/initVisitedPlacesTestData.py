@@ -19,7 +19,7 @@ import urllib.request
 import urllib.parse
 import ast
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 if socket.gethostname()=='DESKTOP-JMPL7B7':
@@ -45,18 +45,21 @@ conn = pymysql.connect(host=env_host, user=env_user, password=env_pw,
                        db=database, charset='utf8')
 curs = conn.cursor(pymysql.cursors.DictCursor)
 
+#전체 확진자에 대해 방문 장소 삽입
 selectQuery = 'SELECT * FROM ConfirmerInfo'
-selectQuery = 'SELECT * FROM ConfirmerInfo WHERE UpperRegId = 27'
+#서울 확진자에 대해 방문 장소 삽입
+selectQuery = 'SELECT * FROM ConfirmerInfo WHERE UpperRegId=11'
 
 curs.execute(selectQuery)
 rows = curs.fetchall()
 
 for row in rows :
-    #서울 11 경기 41 대구 27
+    #UpperRegId = 서울 11 경기 41 대구 27
     print(row)
     R_id = row['R_id']
     C_id = row['C_id']
-
+    ConfirmDate = row['ConfirmDate']
+    
     #해당 지역의 BOX(경계) 찾기
     r_param = {'attrFilter' : 'sig_cd:=:'+str(R_id)}
     r_p = urllib.parse.urlencode(r_param)
@@ -106,11 +109,11 @@ for row in rows :
         latitude = r_point[0]
         longitude = r_point[1]
         
-        #random 날짜
-        start = datetime.strptime('2020/5/1', '%Y/%m/%d')
-        end = datetime.strptime('2020/5/10', '%Y/%m/%d')
+        #random 날짜, 확진날짜 하루 전 방문 장소 3곳
+        start = ConfirmDate-timedelta(days=1)
+        end = ConfirmDate
         random_date = start + (end - start) * random.random()
-        rd_datetime = random_date.date()
+        rd_datetime = random_date
 
         #INSERT INTO ConfirmerVisitedPlaces(C_id,VisitDate,Geom) VALUES(1,'2020-05-02 ',ST_GeomFromText('Point(1.0 1.0)'));
         insertQuery = 'INSERT INTO ConfirmerVisitedPlaces(C_id, VisitDate, Lat, Lon) VALUES(%s,%s,%s,%s);'
