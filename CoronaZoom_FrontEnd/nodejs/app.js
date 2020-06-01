@@ -3,13 +3,33 @@ var dbConObj = require('./dbConn.js');
 var dbconn = dbConObj.init();
 var cors = require('cors');
 
-var app = express(); 
+var app = express();
 
 app.use(cors());
 
 app.get('/', function(req, res){
   res.send('Root');
 });
+
+function handleDisconnect() {
+  dbConn.connect(function(err){
+    if(err) {
+      console.log('error when connection to db:',err);
+      setTimeout(handleDisconnect,2000);
+    }
+  });
+
+  dbConn.on('error',function(err)){
+    console.log('db error',error);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnect();
+    }else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 /**************************** API ****************************/
 
