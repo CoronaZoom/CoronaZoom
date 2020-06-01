@@ -30,7 +30,7 @@
   position: relative;
 }
 .slider.slider-horizontal {
-  width: 80%;
+  width: 70%;
   height: 20px;
   /* 지도: width:300%;height:400px */
 }
