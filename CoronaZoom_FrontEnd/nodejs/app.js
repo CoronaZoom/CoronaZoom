@@ -12,14 +12,14 @@ app.get('/', function(req, res){
 });
 
 function handleDisconnect() {
-  dbConn.connect(function(err){
+  dbconn.connect(function(err){
     if(err) {
       console.log('error when connection to db:',err);
       setTimeout(handleDisconnect,2000);
     }
   });
 
-  dbConn.on('error',function(err)){
+  dbconn.on('error',function(err){
     console.log('db error',error);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') {
       handleDisconnect();
