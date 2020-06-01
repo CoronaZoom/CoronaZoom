@@ -19,6 +19,16 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- end jquery-->
 
+    <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
+    <!-- Bootstrap CSS <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap slider CSS -->
+    <link href="./css/bootstrap-slider.css" rel="stylesheet">
+    <!-- JQUERY -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <!-- Bootstrap slider JavaScript -->
+    <script type="text/javascript" src="./js/bootstrap-slider.js"></script>
+    <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
+
     <!-- 캘린더 -->
     <script type="text/javascript">
     $(function(){
@@ -274,7 +284,7 @@
                                  </script>
                                  </div>
                                </div>
-                               <div class="card-body pb-0 d-flex justify-content-around">
+                               <div class="card-body pb-0 d-flex justify-content-between">
                                  <!-- 감염증 현황 끝, 검색 옵션 시작 연령대, 성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
                                  <div class ="container align-items-start">
                                      <h6 class="card-title">검색 옵션</h6>
@@ -309,16 +319,19 @@
                                       </form>
                                      </p>
                                      <button type="button" class="btn mb-1 btn-outline-info">확인</button>
-                                 </div>
-                                 <div id="map" style="width:300%;height:400px;"></div>
-                               </div>
+                                  </div>
+                                    <div id="map" style="width:300%;height:400px;"></div>
+                                </div>
                                <div class="card-body pb-0 d-flex justify-content-around">
-                                 <div class="w-100 mr-2">
-                                     <p>타임라인바 위치할 예정</p>
-                                 </div>
-                               </div>
-                             </div>
-                         </div>
+                                   <!--
+                                   <label for="slider">타임라인 바</label>-->
+                                  <div class="col">
+                                  <input type="image" src="./Resources/images/play.png" width="30" alt="">
+                                   <input id="timeline" type="text">
+                                  </div>
+                              </div>
+                          </div>
+                       </div>
                     </div>
                </div>
           </div>
@@ -356,6 +369,8 @@
       <script src="./js/dotmap.js"></script>
       <!-- 카드 parsing -->
       <script src="./js/card.js"></script>
+      <!-- 타임라인 바 -->
+      <script src="./js/timeline.js"></script>
       <!-- CORS 정책 플러그 js 파일 -->
       <script type="text/javascript" src="./Resources/jquery.ajax-cross-origin.min.js"></script>
       <!-- 네이버에서 제공한 earthquake.js 파일 -->
