@@ -10,11 +10,11 @@
 
 // Without JQuery
 var slider = new Slider("#timeline", {
-  step: 100,
-	min: 0,
-	max: 400
-  //ticks: [0, 100, 200, 300, 400],
-  //ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
+  step: 1,
+	min: 1,
+	max: 31
+// ticks: [0, 100, 200, 300, 400],
+//  ticks_labels: ['$0', '$100', '$200', '$300', '$400']
   //ticks_snap_bounds: 30
 });
 
