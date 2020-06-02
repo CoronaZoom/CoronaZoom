@@ -11,6 +11,7 @@ app.get('/', function(req, res){
   res.send('Root');
 });
 
+/*
 function handleDisconnect() {
   dbconn.connect(function(err){
     if(err) {
@@ -29,7 +30,7 @@ function handleDisconnect() {
   });
 }
 
-handleDisconnect();
+handleDisconnect();*/
 
 /**************************** API ****************************/
 
