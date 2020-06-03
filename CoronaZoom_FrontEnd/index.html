@@ -330,6 +330,20 @@
                                   <div class="col">
                                   <input type="image" src="./Resources/images/play.png" width="20" alt="">
                                    <input id="timeline" type="text">
+                                   <script type="text/javascript">
+                                   <span>현재 선택 값: <span id="tmVal">timeline.value</span></span>
+                                   $(function(){
+                                     $('#timeline').slider({
+                                       formatter:function(value){
+                                         return '현재값: '+value;
+                                       }
+                                     });
+                                     $("#timeline").on("slide",function(slideEvt))
+                                     {
+                                       $("tmVal").text(slideEvt.value);
+                                     });
+                                   });
+                                   </script>
                                   </div>
                               </div>
                           </div>
