@@ -20,7 +20,6 @@
     <!-- end jquery-->
 
     <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
-    <!-- Bootstrap CSS <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap slider CSS -->
     <link href="./css/bootstrap-slider.css" rel="stylesheet">
     <!-- JQUERY -->
@@ -29,29 +28,10 @@
     <script type="text/javascript" src="./js/bootstrap-slider.js"></script>
     <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
 
-    <!-- 캘린더 -->
-    <script type="text/javascript">
-    $(function(){
-      $("#datepicker").datepicker();
-    });</script>
-
-    <style>
-      * {
-        font-size: 16px;
-        font-family: Consolas, sans-serif;
-      }
-    </style>
-    <!-- 캘린더 -->
-
     <!-- 네이버 지도 API 적용-->
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=p8qdphtxe4&submodules=panorama,geocoder,drawing,visualization"></script>
 
     <!-- JSON 파싱 -->
-    <!--
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <script type="text/javascript">
@@ -269,20 +249,6 @@
                                  <input type="checkbox" name="chk_info" value="isolated"> 격리중
                                  <input type="checkbox" name="chk_info" value="un_isolated"> 격리해제
                                  <button type="button" class="btn mb-1 btn-outline-info">확인</button>
-                                 <script>
-                                   function total(){
-                                     //alert("전체 버튼 클릭");
-                                     // 전체 버튼 클릭 시 구현될 코드들
-                                   }
-                                   function isolated(){
-                                     //alert("격리중 버튼 클릭");
-                                     // 격리중 버튼 클릭 시 구현될 코드들
-                                   }
-                                   function un_isolated(){
-                                     //alert("격리해제 버튼 클릭");
-                                     // 격리해제 버튼 클릭 시 구현될 코드들
-                                   }
-                                 </script>
                                  </div>
                                </div>
                                <div class="card-body pb-0 d-flex justify-content-between">
@@ -293,34 +259,34 @@
                                      <form>
                                        <p>
                                        나이:
-                                       <select name="age">
-                                             <option value="0">0~11</option>
-                                             <option value="1">11~20</option>
-                                             <option value="2">21~30</option>
-                                             <option value="3">31~40</option>
-                                             <option value="4">41~50</option>
-                                             <option value="5">51~60</option>
-                                             <option value-"6">60 이상</option>
+                                       <select name="age" id="age">
+                                             <option value="0">1~10세</option>
+                                             <option value="1">11~20세</option>
+                                             <option value="2">21~30세</option>
+                                             <option value="3">31~40세</option>
+                                             <option value="4">41~50세</option>
+                                             <option value="5">51~60세</option>
+                                             <option value-"6">61세 이상</option>
                                              <option value-"7" selected>전체</option>
                                        </select></p>
-                                     </form>
-                                     <form>
                                        성별:
-                                       <select name="sex">
-                                             <option value="male">남자</option>
-                                             <option value="female">여자</option>
-                                             <option value="total" selected>전체</option>
+                                       <select name="sex" id="sex">
+                                             <option value="0">남자</option>
+                                             <option value="1">여자</option>
+                                             <option value="2" selected>전체</option>
                                          </select></p>
-                                     </form>
                                      <p>
-                                       <form>
-                                         <h6><label for="datepicker">기간</label></h6>
-                                           <p>시작: <input type="date"  id='currentDate'></p>
-                                           <p>　끝: <input type="date"  id='currentDate'></p>
-                                           <!-- <p><input type="submit" value="Submit"></p> -->
-                                      </form>
+                                         시작일: <input type="date" id="startDate" min="2019-12-01" max="2020-09-25"></p>
+                                     <p>
+                                         종료일: <input type="date" id="endDate" min="2019-12-01" max="2020-09-25">
+                                         <script>
+                                            document.getElementById('startDate').value = new Date().toISOString().substring(0, 10);
+                                            document.getElementById('endDate').value = new Date().toISOString().substring(0, 10);
+                                            //document.getElementById('endDate').min = document.getElementById('startDate').value;
+                                         </script>
                                      </p>
-                                     <button type="button" class="btn mb-1 btn-outline-info">확인</button>
+                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="startDotMap()">확인</button>
+                                   </form>
                                   </div>
             <!--map 있던 부분-->
                                 </div>
