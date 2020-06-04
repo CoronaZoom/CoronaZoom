@@ -23,6 +23,9 @@
     var jb2 = jQuery.noConflict();
     </script>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+    var jb4 = jQuery.noConflict();
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase"></script>
@@ -210,12 +213,13 @@
                    <div class="col-lg-3 col-sm-6">
                        <div class="card gradient-1">
                            <div class="card-body">
-                               <h3 class="card-title text-white">총 확진자</h3>
+                                <h3 class="card-title text-white" id="regionname1"></h3>
+                                <h3 class="text-white"> 확진자</h3>
                                <div class="d-inline-block">
-                                 <script>
-                                 $(document).ready(function(){
+                               <script>
+      /*                           $(document).ready(function(){
                                    $.ajax({
-                                      url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase',
+                                     url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase',
                                       type: 'GET',
                                       crossOrigin: true,
                                       //dataType: 'json',
@@ -224,15 +228,15 @@
                                       success: function(data){
                                         //alert("성공!");
                                           $("#totalnum").append(data[0]['SUM(TotalCase)']);
-                                      },
+                                     },
                                       error: function(request,status,error){
                                               alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                                      }
-                                    });
+                                     }
+                                   });
                                   });
                                  </script>
                                    <h2 class="text-white" id="totalnum"></h2>
-                                   <p class="text-white mb-0">(+12)</p>
+                                   <p class="text-white mb-0"></p>
                                </div>
                            </div>
                        </div>
@@ -240,17 +244,18 @@
                    <div class="col-lg-3 col-sm-6">
                        <div class="card gradient-2">
                            <div class="card-body">
-                               <h3 class="card-title text-white">격리중</h3>
+                              <h3 class="card-title text-white" id="regionname2"></h3>
+                               <h3 class="text-white">격리중</h3>
                                <div class="d-inline-block">
                                  <script>
-                                 $(document).ready(function(){
+/*                                 $(document).ready(function(){
                                    /*$.getJSON('http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowCase',
                                      function(data){
                                        console.log(data[0]['NowCase']);
                                        $("#nownum").append(data[0]['NowCase']);
                                      }
                                    );*/
-                                   $.ajax({
+/*                                   $.ajax({
                                      url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowCase',
                                       type: 'GET',
                                       crossOrigin: true,
@@ -281,7 +286,7 @@
                                   });
                                  </script>
                                    <h2 class="text-white" id="nownum"></h2>
-                                   <p class="text-white mb-0">(+12)</p>
+                                   <p class="text-white mb-0"></p>
                                </div>
                            </div>
                        </div>
@@ -290,11 +295,11 @@
                        <div class="col-lg-3 col-sm-6">
                            <div class="card gradient-6">
                                <div class="card-body">
-                                   <h3 class="card-title text-white">격리해제</h3>
+                                   <h3 class="card-title text-white" id="regionname3"></h3>
+                                   <h3 class="text-white">격리해제</h3>
                                    <div class="d-inline-block">
                                      <script>
-
-                                     $(document).ready(function(){
+  /*                                   $(document).ready(function(){
                                        $.ajax({
                                          url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalRecovered',
                                           type: 'GET',
@@ -313,7 +318,7 @@
                                           });
                                      </script>
                                        <h2 class="text-white" id="totalrecov"></h2>
-                                       <p class="text-white mb-0">(+12)</p>
+                                       <p class="text-white mb-0"></p>
                                    </div>
                                </div>
                            </div>
@@ -321,10 +326,11 @@
                        <div class="col-lg-3 col-sm-6">
                            <div class="card gradient-10">
                                <div class="card-body">
-                                   <h3 class="card-title text-black">사망</h3>
+                                   <h3 class="card-title text-black" id="regionname4"></h3>
+                                   <h3 class="text-black">사망</h3>
                                    <div class="d-inline-block">
                                      <script>
-                                     $(document).ready(function(){
+    /*                                 $(document).ready(function(){
                                        $.ajax({
                                          url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalDeath',
                                           type: 'GET',
@@ -343,7 +349,7 @@
                                           });
                                      </script>
                                      <h2 class="text-black" id="death"></h2>
-                                       <p class="text-black mb-0">(+12)</p>
+                                       <p class="text-black mb-0"></p>
                                    </div>
                                </div>
                            </div>
@@ -357,8 +363,8 @@
                                   <div class="card-body pb-0 d-flex justify-content-between">
                                     <div>
                                         <h4 class="mb-1">지역별 코로나 현황</h4>
-                                        <p>지역별 코로나 현황을 레이어를 표시해 알려줍니다.아직 DB연동을 하지 않아서 지도로 대체합니다</p>
-                                        <h3 class="m-0">10,423</h3>
+                                        <p></p>
+                                        <h3 class="m-0"></h3>
                                     </div>
                                   </div>
                                   <div class="card-body pb-0 d-flex justify-content-between">
@@ -368,7 +374,7 @@
                                   </div>
                                   <div class="card-body pb-0 d-flex justify-content-between">
                                     <div class="w-100 mr-2">
-                                        <h6>//</h6>
+                                        <h6></h6>
                                     </div>
                                   </div>
                               </div>
