@@ -69,14 +69,50 @@ function startDataLayer() {
     map.data.addListener('click', function(e) {
         var feature = e.feature;
         var regionName = feature.getProperty('area1');
+        var region_Id = feature.getProperty('r_id');
         if (feature.getProperty('focus') !== true) {
             feature.setProperty('focus', true);
             $("#regionname1").append(regionName);
             $("#regionname2").append(regionName);
             $("#regionname3").append(regionName);
             $("#regionname4").append(regionName);
+            $(document).ready(function(){
+              $.ajax({
+                url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaCityStatus',
+                 type: 'GET',
+                 crossOrigin: true,
+                 //dataType: 'json',
+                 //async: false,
+                 //cache: false,
+                 success: function(data){
+                  // alert("성공!");
+                   var listLen = data.length;
+                   for(var i=0;i<listLen;i++)
+                   {
+                     if(region_Id==data[i]['R_id'])
+                     {
+                       $("#totalnum").empty();
+                       $("#totalnum").append(data[i]['RegionCase']);
+                       $("#nownum").empty();
+                       $("#nownum").append(data[i]['RegionNow']);
+                       $("#totalrecov").empty();
+                       $("#totalrecov").append(data[i]['RegionRecovered']);
+                       $("#death").empty();
+                       $("#death").append(data[i]['RegionDeath']);
+                     }
+                   }
+                  },
+                     error: function(request,status,error){
+                       alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                     }
+                   });
+                 });
         } else {
             feature.setProperty('focus', false);
+            $("#totalnum").empty();
+            $("#nownum").empty();
+            $("#totalrecov").empty();
+            $("#death").empty();
             $("#regionname1").empty();
             $("#regionname2").empty();
             $("#regionname3").empty();
