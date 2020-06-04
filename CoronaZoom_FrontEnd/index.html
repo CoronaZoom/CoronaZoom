@@ -38,6 +38,11 @@
       var url = "http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000";
     </script>
     <!-- JSON 파싱 -->
+    <script>
+    $.noConflict();
+    jQuery(document).ready(function()
+  {});
+  </script>
 </head>
 
 <body>
@@ -253,7 +258,7 @@
                                </div>
                                <div class="card-body pb-0 d-flex justify-content-between">
                                  <!-- 감염증 현황 끝, 검색 옵션 시작 연령대, 성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
-                                  <div id="map" style="width:300%;height:400px;"></div>
+                                 <div id="map" style="width:300%;height:400px;"></div>
                                  <div class ="container align-items-start">
                                      <h6 class="card-title">검색 옵션</h6>
                                      <form>
@@ -288,14 +293,14 @@
                                      <button type="button" class="btn mb-1 btn-outline-info" onclick="startDotMap()">확인</button>
                                    </form>
                                   </div>
-            <!--map 있던 부분-->
+                                              <!--map 있던 부분-->
                                 </div>
                                <div class="card-body pb-0 d-flex justify-content-around">
                                    <!--
                                    <label for="slider">타임라인 바</label>-->
-                                  <div class="col">
+                                <div class="col">
                                   <input type="image" src="./Resources/images/play.png" width="20" alt="">
-                                   <input id="timeline" type="text">
+                                   <input id="timeline" type="text">-
                                   </div>
                               </div>
                           </div>
