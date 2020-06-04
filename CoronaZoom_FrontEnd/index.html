@@ -23,6 +23,10 @@
     <script>
     var jb2 = jQuery.noConflict();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/i18n/jquery.ui.datepicker-ko.min.js"></script>
+    <script>
+    var jb4 = jQuery.noConflict();
+    </script>
     <!-- end jquery-->
 
     <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
@@ -46,6 +50,27 @@
     </script>
     <!-- JSON 파싱 -->
     <script>
+     jb1(function() {
+      //오늘 날짜를 출력
+      jb1("#today").text(new Date().toLocaleDateString());
+
+      jb1( "#startDate,#endDate" ).datepicker({
+            dateFormat:'yy-mm-dd'
+        });
+
+      jb1('#startDate').datepicker("setDate", new Date());
+       jb1('#startDate').datepicker("option", "maxDate", jb1("#endDate").val());
+       jb1('#startDate').datepicker("option", "onClose", function (selectedDate){
+           jb1("#endDate").datepicker( "option", "minDate", selectedDate );
+           });
+
+       jb1('#endDate').datepicker();
+       jb1('#endDate').datepicker("setDate", new Date());
+       jb1('#endDate').datepicker("option", "minDate", jb1("#startDate").val());
+       jb1('#endDate').datepicker("option", "onClose", function (selectedDate){
+           jb1("#startDate").datepicker( "option", "maxDate", selectedDate );
+          });
+    });
   </script>
 </head>
 
@@ -111,6 +136,9 @@
                      사람 많은 곳은 방문 자제<br><br>
                      발열, 호흡기증상(기침, 목 아픔 등)이 있는 사람과 접촉 피하기
                    </MARQUEE>
+              </div>
+              <div>
+                <!-- <p>현재: <span id="today" ></span></p> -->
               </div>
               <!-- header의 오른쪽에는 알람기능이 있고 이는 드롭다운박스 형태로 알람 아이콘을 클릭하면 세부 내용을 알 수 있게 만듦-->
               <div class="header-right">
@@ -284,31 +312,12 @@
                                              <option value="1">여자</option>
                                              <option value="2" selected>전체</option>
                                          </select></p>
-                                     <p>
-                                           <script>
-                                            jb1(document).ready(function($) {
-                                             jb1("#datepicker1, #datepicker2").datepicker({
-                                               dateFormat: 'yy.mm.dd'
-                                             });
-                                           });
-                                         </script>
                                          <p>시작일:
-                                           <input type="text" id="datepicker1"> ~
+                                           <input type="text" id="startDate"> ~
                                          </p><p>
                                            종료일:
-                                           <input type="text" id="datepicker2">
+                                           <input type="text" id="endDate">
                                          </p>
-                                         <!--
-                                     <p>
-                                         시작일: <input type="date" id="startDate" min="2019-12-01" max="2020-09-25"></p>
-                                     <p>
-                                         종료일: <input type="date" id="endDate" min="2019-12-01" max="2020-09-25">
-                                         <script>
-                                            document.getElementById('startDate').value = new Date().toISOString().substring(0, 10);
-                                            document.getElementById('endDate').value = new Date().toISOString().substring(0, 10);
-                                            //document.getElementById('endDate').min = document.getElementById('startDate').value;
-                                         </script>
-                                     </p>-->
                                      <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">확인</button>
                                    </form>
                                   </div>
