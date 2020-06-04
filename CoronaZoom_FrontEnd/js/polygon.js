@@ -66,21 +66,26 @@ function startDataLayer() {
     regionGeoJson.forEach(function(geojson) {
         map.data.addGeoJson(geojson);
     });
-
     map.data.addListener('click', function(e) {
         var feature = e.feature;
-
+        var regionName = feature.getProperty('area1');
         if (feature.getProperty('focus') !== true) {
             feature.setProperty('focus', true);
+            $("#regionname1").append(regionName);
+            $("#regionname2").append(regionName);
+            $("#regionname3").append(regionName);
+            $("#regionname4").append(regionName);
         } else {
             feature.setProperty('focus', false);
-        }
+            $("#regionname1").empty();
+            $("#regionname2").empty();
+            $("#regionname3").empty();
+            $("#regionname4").empty();
+            }
     });
-
     map.data.addListener('mouseover', function(e) {
         var feature = e.feature,
             regionName = feature.getProperty('area1');
-
         tooltip.css({
             display: '',
             left: e.offset.x,
