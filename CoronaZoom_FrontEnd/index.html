@@ -16,7 +16,13 @@
     <!-- jquert의 캘린더 위젯을 cdn을 이용해서 적용-->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+    var jb1 = jQuery.noConflict();
+    </script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+    var jb2 = jQuery.noConflict();
+    </script>
     <!-- end jquery-->
 
     <!-- 타임라인 바를 위한 부트스르랩 CSS & JQUERY -->
@@ -33,15 +39,13 @@
 
     <!-- JSON 파싱 -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+    <script>  var jb3 = jQuery.noConflict();
+    </script>
     <script type="text/javascript">
       var url = "http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000";
     </script>
     <!-- JSON 파싱 -->
     <script>
-    $.noConflict();
-    jQuery(document).ready(function()
-  {});
   </script>
 </head>
 
@@ -280,6 +284,32 @@
                                              <option value="1">여자</option>
                                              <option value="2" selected>전체</option>
                                          </select></p>
+                                         <p>
+                                           <script>
+                                           jb1.datepicker.setDefaults({
+                                             dateFormat: 'yy-mm',
+                                             prevText: '이전 달',
+                                             nextText: '다음 달',
+                                             monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                             monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                                             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                                             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                                             showMonthAfterYear: true,
+                                             yearSuffix: '년'
+                                           });
+
+                                           jb1(document).ready(function($) {
+                                             jb1("#datepicker1, #datepicker2").datepicker();
+                                           });
+
+                                           </script>
+                                           <p>조회기간:
+                                             <input type="text" id="datepicker1"> ~
+                                             <input type="text" id="datepicker2">
+                                           </p>
+                                       </p>
+                                         <!--
                                      <p>
                                          시작일: <input type="date" id="startDate" min="2019-12-01" max="2020-09-25"></p>
                                      <p>
@@ -289,7 +319,7 @@
                                             document.getElementById('endDate').value = new Date().toISOString().substring(0, 10);
                                             //document.getElementById('endDate').min = document.getElementById('startDate').value;
                                          </script>
-                                     </p>
+                                     </p>-->
                                      <button type="button" class="btn mb-1 btn-outline-info" onclick="startDotMap()">확인</button>
                                    </form>
                                   </div>
