@@ -286,29 +286,16 @@
                                          </select></p>
                                          <p>
                                            <script>
-                                           jb1.datepicker.setDefaults({
-                                             dateFormat: 'yy-mm',
-                                             prevText: '이전 달',
-                                             nextText: '다음 달',
-                                             monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                             monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                                             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                                             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                                             showMonthAfterYear: true,
-                                             yearSuffix: '년'
+                                            jb1(document).ready(function($) {
+                                             jb1("#datepicker1, #datepicker2").datepicker({
+                                               dateFormat: 'yy.mm.dd'
+                                             });
                                            });
-
-                                           jb1(document).ready(function($) {
-                                             jb1("#datepicker1, #datepicker2").datepicker();
-                                           });
-
-                                           </script>
-                                           <p>조회기간:
-                                             <input type="text" id="datepicker1"> ~
-                                             <input type="text" id="datepicker2">
-                                           </p>
-                                       </p>
+                                         </script>
+                                         <p>조회기간:
+                                           <input type="text" id="datepicker1"> ~
+                                           <input type="text" id="datepicker2">
+                                         </p>
                                          <!--
                                      <p>
                                          시작일: <input type="date" id="startDate" min="2019-12-01" max="2020-09-25"></p>
