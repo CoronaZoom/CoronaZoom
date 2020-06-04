@@ -7,7 +7,7 @@ var map = new naver.maps.Map(mapDiv, {
 });
 //ajax...
 naver.maps.Event.once(map, 'init_stylemap', function() {
-  $.ajax({
+  jb3.ajax({
     url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/ConfirmerInfo',                                                    dataType: 'json',
     method:"get",
     crossOrigin: true,
