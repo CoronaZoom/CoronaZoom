@@ -254,10 +254,10 @@
                                      <p>국내 코로나 현황을 알려줍니다.</p>
                                  </div>
                                  <div> <!--체크박스: 전체 격리중 격리해제-->
-                                 <input type="checkbox" name="chk_info" value="total" checked="checked"> 전체
-                                 <input type="checkbox" name="chk_info" value="isolated"> 격리중
-                                 <input type="checkbox" name="chk_info" value="un_isolated"> 격리해제
-                                 <button type="button" class="btn mb-1 btn-outline-info">확인</button>
+                                   <input type="checkbox" name="chk" value="0" onClick="reDotMap()" checked="checked"> 전체
+                                   <input type="checkbox" name="chk" value="1" onClick="reDotMap()"> 격리중
+                                   <input type="checkbox" name="chk" value="2" onClick="reDotMap()"> 격리해제
+                                   <input type="checkbox" name="chk" value="3" onClick="reDotMap()"> 사망
                                  </div>
                                </div>
                                <div class="card-body pb-0 d-flex justify-content-between">
@@ -275,8 +275,8 @@
                                              <option value="3">31~40세</option>
                                              <option value="4">41~50세</option>
                                              <option value="5">51~60세</option>
-                                             <option value-"6">61세 이상</option>
-                                             <option value-"7" selected>전체</option>
+                                             <option value="6">61세 이상</option>
+                                             <option value="7" selected>전체</option>
                                        </select></p>
                                        성별:
                                        <select name="sex" id="sex">
@@ -284,7 +284,7 @@
                                              <option value="1">여자</option>
                                              <option value="2" selected>전체</option>
                                          </select></p>
-                                         <p>
+                                     <p>
                                            <script>
                                             jb1(document).ready(function($) {
                                              jb1("#datepicker1, #datepicker2").datepicker({
@@ -292,8 +292,10 @@
                                              });
                                            });
                                          </script>
-                                         <p>조회기간:
+                                         <p>시작일:
                                            <input type="text" id="datepicker1"> ~
+                                         </p><p>
+                                           종료일:
                                            <input type="text" id="datepicker2">
                                          </p>
                                          <!--
@@ -307,7 +309,7 @@
                                             //document.getElementById('endDate').min = document.getElementById('startDate').value;
                                          </script>
                                      </p>-->
-                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="startDotMap()">확인</button>
+                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">확인</button>
                                    </form>
                                   </div>
                                               <!--map 있던 부분-->
@@ -392,9 +394,6 @@
       <!-- dashboardjs -->
       <script src="./Resources/js/dashboard/dashboard-1.js"></script>
       <!-- 부트스트랩 js -->
-
-      <!-- 달력 -->
-      <script>document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;</script>
 
       </body>
 
