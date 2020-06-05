@@ -54,7 +54,7 @@ app.get('/api/CoronaTotalStatus/TotalCase', function(req, res){
 
 //현재(최근) 격리자 수
 app.get('/api/CoronaTotalStatus/NowCase', function(req, res){
-  dbconn.query('SELECT NowCase from CoronaTotalStatus ORDER BY UpdateDateTime DESC LIMIT 1;', function(err, rows) {
+  dbconn.query('SELECT SUM(NowCase) from CoronaTotalStatus;', function(err, rows) {
     if(err) throw err;
     res.send(rows);
   });
