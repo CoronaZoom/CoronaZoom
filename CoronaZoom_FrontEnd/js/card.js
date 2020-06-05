@@ -24,7 +24,7 @@ jb1(document).ready(function(){
      }
    );*/
    jb1.ajax({
-     url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/NowCase',
+     url: 'http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/Nowcase',
       type: 'GET',
       crossOrigin: true,
       //dataType: 'json',
@@ -42,7 +42,7 @@ jb1(document).ready(function(){
         //  for(var i=0; i<listLen; i++){
         //    contentStr += list[i].NowCase+"</br>";
         //  }
-          jb1("#nownum").append(data[0]['NowCase']);
+          jb1("#nownum").append(data[0]['SUM(NowCase)']);
 
           //$('#totalnum').append(obj.getArray("NowCase"));
           //});
