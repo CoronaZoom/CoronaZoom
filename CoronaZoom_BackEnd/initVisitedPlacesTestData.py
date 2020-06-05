@@ -46,9 +46,11 @@ conn = pymysql.connect(host=env_host, user=env_user, password=env_pw,
 curs = conn.cursor(pymysql.cursors.DictCursor)
 
 #전체 확진자에 대해 방문 장소 삽입
-selectQuery = 'SELECT * FROM ConfirmerInfo'
+#selectQuery = 'SELECT * FROM ConfirmerInfo'
 #서울 확진자에 대해 방문 장소 삽입
-selectQuery = 'SELECT * FROM ConfirmerInfo WHERE UpperRegId=11'
+#selectQuery = 'SELECT * FROM ConfirmerInfo WHERE UpperRegId=11'
+#28일~3일 확진자에 대해 방문 장소 삽입
+selectQuery = 'SELECT * FROM ConfirmerInfo WHERE ConfirmDate>="2020-05-28" AND ConfirmDate<="2020-06-03";'
 
 curs.execute(selectQuery)
 rows = curs.fetchall()
@@ -87,39 +89,42 @@ for row in rows :
 
     total_num = int(buildings['response']['record']['total'])
 
-    rd_list = []
-    for i in range(1,4):
-        rd_list.append(random.randrange(1,total_num))
+    if buildings['response']['status']=='OK':
+        rd_list = []
+        for i in range(1,4):
+            rd_list.append(random.randrange(1,total_num))
 
-    for i in rd_list:
-        b_param_new = {'geomFilter' : 'BOX('+str(region_bbox[0])+','+str(region_bbox[1])+','+str(region_bbox[2])+','+str(region_bbox[3])+')',
-                    'attrFilter' : 'sigungu:like:' + region_name+ '',
-                   'page' : i, 'size' : 1}
-        b_p = urllib.parse.urlencode(b_param_new)
-        building_api = building_api_url + b_p
+        for i in rd_list:
+            b_param_new = {'geomFilter' : 'BOX('+str(region_bbox[0])+','+str(region_bbox[1])+','+str(region_bbox[2])+','+str(region_bbox[3])+')',
+                        'attrFilter' : 'sigungu:like:' + region_name+ '',
+                       'page' : i, 'size' : 1}
+            b_p = urllib.parse.urlencode(b_param_new)
+            building_api = building_api_url + b_p
 
-        req = urllib.request.Request(building_api)
-        res = urllib.request.urlopen(req)
-        building_data = res.read().decode('UTF-8')
-        buildings = ast.literal_eval(building_data)
+            req = urllib.request.Request(building_api)
+            res = urllib.request.urlopen(req)
+            building_data = res.read().decode('UTF-8')
+            buildings = ast.literal_eval(building_data)
 
-        #건물 Point
-        r_point = buildings['response']['result']['featureCollection']['features'][0]['geometry']['coordinates'][0][0][0]
-        point = 'Point('+str(r_point[0])+' '+str(r_point[1])+')'
-        latitude = r_point[0]
-        longitude = r_point[1]
-        
-        #random 날짜, 확진날짜 하루 전 방문 장소 3곳
-        start = ConfirmDate-timedelta(days=1)
-        end = ConfirmDate
-        random_date = start + (end - start) * random.random()
-        rd_datetime = random_date
+            #건물 Point
+            r_point = buildings['response']['result']['featureCollection']['features'][0]['geometry']['coordinates'][0][0][0]
+            point = 'Point('+str(r_point[0])+' '+str(r_point[1])+')'
+            latitude = r_point[0]
+            longitude = r_point[1]
+            
+            #random 날짜, 확진날짜 하루 전 방문 장소 3곳
+            start = ConfirmDate-timedelta(days=1)
+            end = ConfirmDate
+            random_date = start + (end - start) * random.random()
+            rd_datetime = random_date
 
-        #INSERT INTO ConfirmerVisitedPlaces(C_id,VisitDate,Geom) VALUES(1,'2020-05-02 ',ST_GeomFromText('Point(1.0 1.0)'));
-        insertQuery = 'INSERT INTO ConfirmerVisitedPlaces(C_id, VisitDate, Lat, Lon) VALUES(%s,%s,%s,%s);'
-        values = (C_id, rd_datetime, latitude, longitude)
+            #INSERT INTO ConfirmerVisitedPlaces(C_id,VisitDate,Geom) VALUES(1,'2020-05-02 ',ST_GeomFromText('Point(1.0 1.0)'));
+            insertQuery = 'INSERT INTO ConfirmerVisitedPlaces(C_id, VisitDate, Lat, Lon) VALUES(%s,%s,%s,%s);'
+            values = (C_id, rd_datetime, latitude, longitude)
 
-        curs.execute(insertQuery,values)
+            curs.execute(insertQuery,values)
+    else:
+        print("C_id is "+(str)(C_id)+" "+building_api)
 
     conn.commit()
 
