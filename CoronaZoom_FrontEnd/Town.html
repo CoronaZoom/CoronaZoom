@@ -17,11 +17,8 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
-    var jb2 = jQuery.noConflict();
+    var jb5 = jQuery.noConflict();
     </script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="http://ec2-13-125-253-144.ap-northeast-2.compute.amazonaws.com:3000/api/CoronaTotalStatus/TotalCase"></script>
     <script>
     function callback(data){
@@ -230,12 +227,6 @@
                             <!-- 지도 -->
                             <div id="map" style="width:300%;height:400px;"></div>
                             <script>
-                            var position = new naver.maps.LatLng(37.3595704, 127.105399);
-                            var mapOptions = {
-                              center: position;
-                              zoom: 10
-                            };
-                            var map = new naver.maps.Map('map', mapOptions);
                             function input()
                             {
                               var address = document.getElementById("addresstest").value;
@@ -281,7 +272,7 @@
       <!--위치 정보를 받아오는 getCurrentPosition함수를 사용해 위도 경도를 알아오게 하는 것 까지 구현-->
     <!--  <script src="./js/geocoder.js"></script> -->
       <script src="./js/setinfo.js"></script>
-      <script src="./js/dotmap.js"></script>
+      <script src="./js/towndotmap.js"></script>
       <script src="./js/SearchAddress.js"></script>
       <script src="./js/getCurrentPosition.js"></script>
       <script src="./Resources/plugins/common/common.min.js"></script>
