@@ -58,7 +58,7 @@
             dateFormat:'yy-mm-dd'
         });
 
-      jb1('#startDate').datepicker("setDate", new Date());
+      //jb1('#startDate').datepicker("setDate", new Date());
        jb1('#startDate').datepicker("option", "maxDate", jb1("#endDate").val());
        jb1('#startDate').datepicker("option", "onClose", function (selectedDate){
            jb1("#endDate").datepicker( "option", "minDate", selectedDate );
@@ -138,7 +138,7 @@
                    </MARQUEE>
               </div>
               <div>
-                <!-- <p>현재: <span id="today" ></span></p> -->
+                <!-- <p><h5 class="mb-1 justify-content-between"><span id="today" ></span> 기준</h5></p> -->
               </div>
               <!-- header의 오른쪽에는 알람기능이 있고 이는 드롭다운박스 형태로 알람 아이콘을 클릭하면 세부 내용을 알 수 있게 만듦-->
               <div class="header-right">
@@ -278,7 +278,7 @@
                              <div class="card">
                                <div class="card-body pb-0 d-flex justify-content-between">
                                  <div>
-                                     <h3 class="mb-1">국내코로나현황</h3>
+                                     <h3 class="mb-1">국내 코로나 현황</h3>
                                      <p>국내 코로나 현황을 알려줍니다.</p>
                                  </div>
                                  <div> <!--체크박스: 전체 격리중 격리해제-->
