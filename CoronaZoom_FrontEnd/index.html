@@ -58,7 +58,7 @@
             dateFormat:'yy-mm-dd'
         });
 
-      //jb1('#startDate').datepicker("setDate", new Date());
+       jb1('#startDate').datepicker("setDate", new Date("2020-01-01"));
        jb1('#startDate').datepicker("option", "maxDate", jb1("#endDate").val());
        jb1('#startDate').datepicker("option", "onClose", function (selectedDate){
            jb1("#endDate").datepicker( "option", "minDate", selectedDate );
@@ -121,8 +121,8 @@
           <div class="header-content clearfix">
               <div class="nav-control">
                   <div class="hamburger">
+                      <span class="toggle-icon"><i class="icon-menu"></i></span>
                       <span class="toggle-icon"><img src="./Resources/images/hamburger.png" alt=""><i class="icon-menu"></i>
-                      </span>
                   </div>
               </div>
               <!-- header의 왼쪽에는 안전수칙, 주요뉴스 헤드라인을 구현할 예정임-->
@@ -137,9 +137,6 @@
                      사람 많은 곳은 방문 자제<br><br>
                      발열, 호흡기증상(기침, 목 아픔 등)이 있는 사람과 접촉 피하기
                    </MARQUEE>
-              </div>
-              <div>
-                <!-- <p><h5 class="mb-1 justify-content-between"><span id="today" ></span> 기준</h5></p> -->
               </div>
               <!-- header의 오른쪽에는 알람기능이 있고 이는 드롭다운박스 형태로 알람 아이콘을 클릭하면 세부 내용을 알 수 있게 만듦-->
               <div class="header-right">
@@ -162,7 +159,7 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.06.09 11:39 PM</h6>
+                                                  <h6 class="notification-heading">20.05.06 12:00 AM</h6>
                                                   <span class="notification-text">국내 코로나 현황 업데이트 완료</span>
                                               </div>
                                           </a>
@@ -171,7 +168,7 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.06.09 11:39 PM</h6>
+                                                  <h6 class="notification-heading">20.05.06 12:00 AM</h6>
                                                   <span class="notification-text">우리동네 코로나 현황 업데이트 완료</span>
                                               </div>
                                           </a>
@@ -280,7 +277,7 @@
                                <div class="card-body pb-0 d-flex justify-content-between">
                                  <div>
                                      <h3 class="mb-1">국내 코로나 현황</h3>
-                                     <p>국내 코로나 현황을 알려줍니다.</p>
+                                     <p><span id="today"></span> 기준</p>
                                  </div>
                                  <div> <!--체크박스: 전체 격리중 격리해제-->
                                    <input type="checkbox" name="chk" value="0" onClick="reDotMap()" checked="checked"> 전체
@@ -291,7 +288,7 @@
                                </div>
                                <div class="card-body pb-0 d-flex justify-content-between">
                                  <!-- 감염증 현황 끝, 검색 옵션 시작 연령대, 성별은 드롭다운형태 기간은 jquery의 캘린더 적용-->
-                                 <div id="map" style="width:300%;height:400px;"></div>
+                                 <div id="map" style="width:300%;height:600px;"></div>
                                  <div class ="container align-items-start">
                                      <h6 class="card-title">검색 옵션</h6>
                                      <form>
@@ -320,6 +317,7 @@
                                            <input type="text" id="endDate">
                                          </p>
                                      <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">확인</button>
+                                     <!-- <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">슬라이드쇼</button> -->
                                    </form>
                                   </div>
                                               <!--map 있던 부분-->
@@ -329,7 +327,9 @@
                                    <label for="slider">타임라인 바</label>-->
                                 <div class="col">
                                   <input type="image" src="./Resources/images/play.png" width="20" alt="">
-                                   <input id="timeline" type="text">-
+                                   <input id="timeline" type="text">
+                                   <span id="timelineCurrentSliderValLabel"><span id="timelineSliderVal"></span></span>
+                                   <input id="timeline-enabled" type="checkbox"/> 한달간의 변화 한눈에 보기
                                   </div>
                               </div>
                           </div>
