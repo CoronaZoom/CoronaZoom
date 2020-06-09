@@ -122,7 +122,7 @@ function reDotMap() {
   for(var i=0;i<4;i++) {
     statusValue[i] = chk[i].value;
     if(chk[i].checked == true) {
-      console.log(statusValue[i]);
+      //console.log(statusValue[i]);
       if(statusValue[i] == '0') {
         dotmap_i.setData(arr[0]);
         dotmap_i.setMap(map);
@@ -174,9 +174,12 @@ function optionSelect(data) {
   var test = [x, y];
   var arr1 = new Array(); // age
   var arr2 = new Array(); // sex
+  var arr3 = new Array(); // calendar
 
   var age = document.getElementById("age");
   var sex = document.getElementById("sex");
+  var startDate = document.getElementById("startDate");
+  var endDate = document.getElementById("endDate");
 
   ////////// 검색 옵션: 나이 //////////
   // 선택된 option의 value가 저장된다.
@@ -306,7 +309,44 @@ function optionSelect(data) {
   }
 
   ////////// 검색 옵션: 기간 //////////
-  //var dateControl = document.querySelector('input[type="date"]');
+  var str;
+  var y, m, d;
+  var strdate;
+  var start, end;
+  var confirmDatelist = new Array();
+  for(var i=0;i<listLen;i++) {
+    // ConfirmDate 형식: 2020-05-09T00:00:00.000Z
+    // T 기준으로 날짜만 받아오기
+    str = data[i]['ConfirmDate'].split('T');
+    y = str[0].substr(0,4);
+    m = str[0].substr(5,2);
+    d = str[0].substr(8,2);
+    strdate = new Date(y, m-1, d);
+    confirmDatelist[i] = strdate;
+  }
+
+  y = startDate.value.substr(0,4);
+  m = startDate.value.substr(5,2);
+  d = startDate.value.substr(8,2);
+  start = new Date(y, m-1, d);
+
+  y = endDate.value.substr(0,4);
+  m = endDate.value.substr(5,2);
+  d = endDate.value.substr(8,2);
+  end = new Date(y, m-1, d);
+
+  // startDate 이후 endDate 이전
+  for(var i=0;i<listLen;i++) {
+    if(start <= confirmDatelist[i] && end >= confirmDatelist[i]) {
+      test = [data[i]['Latitude'], data[i]['Longitude']];
+      arr3[i] = test;
+      continue;
+    }
+    else{
+      arr3[i] = 0;
+    }
+  }
+
 
   // 옵션 적용된 최종 상태별 데이터 저장
   var result_i = new Array();
@@ -316,16 +356,16 @@ function optionSelect(data) {
   var ii = 0, iui = 0, id = 0;
 
   for(var i=0;i<listLen;i++){
-    // age와 sex 조건 + 격리중 상태의 교집합만 저장
-    if(arr1[i] != 0 && arr2[i] != 0 && idx_i[i] != 0){
+    // age와 sex 조건 + 캘린더 기간 + 격리중 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_i[i] != 0){
       result_i[ii++] = arr1[i];
     }
-    // age와 sex 조건 + 격리해제 상태의 교집합만 저장
-    if(arr1[i] != 0 && arr2[i] != 0 && idx_ui[i] != 0){
+    // age와 sex 조건 + 캘린더 기간 + 격리해제 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_ui[i] != 0){
       result_ui[iui++] = arr1[i];
     }
-    // age와 sex 조건 + 사망 상태의 교집합만 저장
-    if(arr1[i] != 0 && arr2[i] != 0 && idx_d[i] != 0){
+    // age와 sex 조건 + 캘린더 기간 + 사망 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_d[i] != 0){
       result_d[id++] = arr1[i];
     }
   }
