@@ -9,17 +9,15 @@ var map = new naver.maps.Map(mapDiv, {
 var datalist = new Array();
 //var dotmap;
 var dotmap_t1; //24시간 미만
-var dotmap_t2; //24시간 이상 ~ 4일 미만
+var dotmap_t2;//24시간 이상 ~ 4일 미만
 var dotmap_t3; //4일 이상 ~ 9일 이하
 
-var today = new Date();
-var prev_1day = new Date();
-prev_1day.setDate(prev_1day.getDate()-10);
-var prev_4day = new Date();
-prev_4day.setDate(prev_4day.getDate()-14);
-var prev_9day = new Date();
-prev_9day.setDate(prev_4day.getDate()-19);
-var date;
+var y, m, d;
+
+var today = new Date("2020-06-01");
+var prev_1day = new Date("2020-05-31");
+var prev_4day = new Date("2020-05-28");
+var prev_9day = new Date("2020-05-23");
 
 var t1 = new Array();
 var t2 = new Array();
@@ -41,7 +39,10 @@ function startDotMap(data) {
   var listLen = data.length;
   datalist = data;
   console.log("파싱성공");
-
+    console.log(today);
+      console.log(prev_1day);
+          console.log(prev_4day);
+              console.log(prev_9day);
   var x, y;
   var test = [x, y];
   var j = 0;
@@ -55,26 +56,27 @@ function startDotMap(data) {
     m = str[0].substr(5,2);
     d = str[0].substr(8,2);
     strdate = new Date(y, m-1, d);
-    visitDatelist[i] = strdate;
-  /2150  //console.log(test);  // 어떻게 저장되는지 확인
+    visitDatelist[i] = strdate; //console.log(test);  // 어떻게 저장되는지 확인
   }
   //24시간미만
   for(var i=0;i<listLen;i++){
-    if(prev_1day > visitDatelist[i] && visitDatelist[i] <= today) {
+    if(prev_1day < visitDatelist[i] && visitDatelist[i] <= today) {
+      console.log(i);
       test = [data[i]['Lat'], data[i]['Lon']];
       t1[i] = test;
     }
   }
    //24시간 이상 ~ 4일 미만
   for(var i=0;i<listLen;i++){
-    if(prev_1day >= visitDatellist[i] && visitDatelist[i] < prev_4day) {
+    if(prev_4day < visitDatelist[i] && visitDatelist[i] <= prev_1day) {
       test = [data[i]['Lat'], data[i]['Lon']];
       t2[i] = test;
     }
   }
   //4일 이상 ~ 9일 이하
   for(var i=0;i<listLen;i++){
-    if(prev_4day >= visitDatellist[i] && visitDatelist[i] <= prev_9day) {
+    if(prev_9day <= visitDatelist[i] && visitDatelist[i] <= prev_4day) {
+      console.log(i);
       test = [data[i]['Lat'], data[i]['Lon']];
       t3[i] = test;
     }
@@ -90,7 +92,7 @@ function startDotMap(data) {
   // 격리 중 (빨강)
   dotmap_t1 = new naver.maps.visualization.DotMap({
     map: map,
-    data: tl,
+    data: t1,
     fillColor: '#FF0000',
     radius: 3
   });
