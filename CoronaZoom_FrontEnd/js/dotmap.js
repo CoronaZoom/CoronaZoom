@@ -378,3 +378,278 @@ function optionSelect(data) {
 
   return result;
 }
+
+
+////////// 타임라인바용 reDotMap //////////
+
+// 슬라이더가 움직일 때마다 호출되어 점찍음
+function timelinereDotMap() {
+  console.log("탐라 점찍기");
+
+  var arr = new Array();
+  // 타임라인바에 맞는 데이터 세팅
+  arr = timelinebar(datalist);
+
+  var chk = document.getElementsByName("chk");
+  var statusValue = new Array();
+
+  // 어떤 상태가 체크됐는지 확인
+  for(var i=0;i<4;i++) {
+    statusValue[i] = chk[i].value;
+    if(chk[i].checked == true) {
+      //console.log(statusValue[i]);
+      if(statusValue[i] == '0') {
+        dotmap_i.setData(arr[0]);
+        dotmap_i.setMap(map);
+        dotmap_ui.setData(arr[1]);
+        dotmap_ui.setMap(map);
+        dotmap_d.setData(arr[2]);
+        dotmap_d.setMap(map);
+        break;
+      }
+      if(statusValue[i] == '1') {
+        dotmap_i.setData(arr[0]);
+        dotmap_i.setMap(map);
+      }
+      if(statusValue[i] == '2') {
+        dotmap_ui.setData(arr[1]);
+        dotmap_ui.setMap(map);
+      }
+      if(statusValue[i] == '3') {
+        dotmap_d.setData(arr[2]);
+        dotmap_d.setMap(map);
+      }
+    }
+    // 선택 안된 건 지도에서 지우기
+    if(chk[i].checked == false) {
+      if(statusValue[i] == '0') {
+        dotmap_i.setMap(null);
+        dotmap_ui.setMap(null);
+        dotmap_d.setMap(null);
+      }
+      if(statusValue[i] == '1') {
+        dotmap_i.setMap(null);
+      }
+      if(statusValue[i] == '2') {
+        dotmap_ui.setMap(null);
+      }
+      if(statusValue[i] == '3') {
+        dotmap_d.setMap(null);
+      }
+    }
+  }
+  //dotmap.redraw();
+}
+
+// 오늘을 기준으로 31일 전까지의 데이터를 보여줌
+// 타임라인바에 맞는 데이터 저장
+function timelinebar(data) {
+  var listLen = data.length; // ConfirmerInfo 길이
+
+  var x, y;
+  var test = [x, y];
+  var arr1 = new Array(); // age
+  var arr2 = new Array(); // sex
+  var arr3 = new Array(); // calendar
+
+  var age = document.getElementById("age");
+  var sex = document.getElementById("sex");
+  var startDate = document.getElementById("startDate");
+  var endDate = document.getElementById("endDate");
+
+  ////////// 검색 옵션: 나이 //////////
+  // 선택된 option의 value가 저장된다.
+  var ageValue = age.options[age.selectedIndex].value;
+  // 선택된 option의 text가 저장된다.
+  var ageText = age.options[age.selectedIndex].text;
+
+  // 현재 년도로부터 확진자 나이 계산
+  let today = new Date();
+  let year = today.getFullYear(); // current year
+
+  switch(ageValue){ // 2020 - confirmer_Birthyear + 1 로 계산
+    case '0': // 1~10세 / 2020~2011생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 1 && year - data[i]['Birthyear'] + 1 <= 10) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '1': // 11~20세 / 2010~2001생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 11 && year - data[i]['Birthyear'] + 1 <= 20) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '2': // 21~30세 / 2000~1991생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 21 && year - data[i]['Birthyear'] + 1 <= 30) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '3': // 31~40세 / 1990~1981생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 31 && year - data[i]['Birthyear'] + 1 <= 40) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '4': // 41~50세 / 1980~1971생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 41 && year - data[i]['Birthyear'] + 1 <= 50) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '5': // 51~60세 / 1970~1961생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 51 && year - data[i]['Birthyear'] + 1 <= 60) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '6': // 61세 이상 / 1960~생
+      for(var i=0;i<listLen;i++){
+        if(year - data[i]['Birthyear'] + 1 >= 61) {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr1[i] = test;
+        }
+        else {
+          arr1[i] = 0;
+        }
+      }
+      break;
+    case '7': // 전체
+      arr1 = total;
+      break;
+  }
+
+  ////////// 검색 옵션: 성별 //////////
+  // 선택된 option의 value가 저장된다.
+  var sexValue = sex.options[sex.selectedIndex].value;
+  // 선택된 option의 text가 저장된다.
+  var sexText = sex.options[sex.selectedIndex].text;
+
+  switch(sexValue){
+    case '0': // male
+      for(var i=0;i<listLen;i++){
+        if(data[i]['Sex'] == "M") {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr2[i] = test;
+        }
+        else {
+          arr2[i] = 0;
+        }
+      }
+      break;
+    case '1': // female
+      for(var i=0;i<listLen;i++){
+        if(data[i]['Sex'] == "F") {
+          test = [data[i]['Latitude'], data[i]['Longitude']];
+          arr2[i] = test;
+        }
+        else {
+          arr2[i] = 0;
+        }
+      }
+      break;
+    case '2': // 전체
+      arr2 = total;
+      break;
+  }
+
+  ////////// 검색 옵션: 기간 //////////
+  var str;
+  var y, m, d;
+  var strdate;
+  var date, tltoday;
+  var confirmDatelist = new Array();
+  for(var i=0;i<listLen;i++) {
+    // ConfirmDate 형식: 2020-05-09T00:00:00.000Z
+    // T 기준으로 날짜만 받아오기
+    str = data[i]['ConfirmDate'].split('T');
+    y = str[0].substr(0,4);
+    m = str[0].substr(5,2);
+    d = str[0].substr(8,2);
+    strdate = new Date(y, m-1, d);
+    confirmDatelist[i] = strdate;
+  }
+
+  // timeline.js에서 점이 찍힐 날짜의 범위를 받아옴
+  end = tldateReturn();
+  start = tlstartReturn();
+  console.log("date: "+end);
+  //end = new Date(tldate.getFullYear(), tldate.getMonth(), 1);
+  //start = new Date(tldate.getFullYear(), tldate.getMonth()-1, 1);
+
+  // startDate 이후 endDate 이전
+  for(var i=0;i<listLen;i++) {
+    if(start <= confirmDatelist[i] && end >= confirmDatelist[i]) {
+      test = [data[i]['Latitude'], data[i]['Longitude']];
+      arr3[i] = test;
+      continue;
+    }
+    else{
+      arr3[i] = 0;
+    }
+  }
+  // 하루씩만: if(+date == +confirmDatelist[i]) {
+
+
+  // 옵션 적용된 최종 상태별 데이터 저장
+  var result_i = new Array();
+  var result_ui = new Array();
+  var result_d = new Array();
+
+  var ii = 0, iui = 0, id = 0;
+
+  for(var i=0;i<listLen;i++){
+    // age와 sex 조건 + 타임라인바 + 격리중 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_i[i] != 0){
+      result_i[ii++] = arr1[i];
+    }
+    // age와 sex 조건 + 타임라인바 + 격리해제 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_ui[i] != 0){
+      result_ui[iui++] = arr1[i];
+    }
+    // age와 sex 조건 + 타임라인바 + 사망 상태의 교집합만 저장
+    if(arr1[i] != 0 && arr2[i] != 0 && arr3[i] != 0 && idx_d[i] != 0){
+      result_d[id++] = arr1[i];
+    }
+  }
+
+  // 배열로 넘겨주기
+  var result = new Array();
+  result[0] = result_i;
+  result[1] = result_ui;
+  result[2] = result_d;
+  console.log(result);
+
+  return result;
+}
