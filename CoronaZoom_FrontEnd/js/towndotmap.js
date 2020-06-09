@@ -13,12 +13,14 @@ var dotmap_t2; //24시간 이상 ~ 4일 미만
 var dotmap_t3; //4일 이상 ~ 9일 이하
 
 var today = new Date();
-console.log(today);
+var prev_1day = new Date();
+prev_1day.setDate(prev_1day.getDate()-10);
 var prev_4day = new Date();
-prev_4day.setDate(prev_4day.getDate()-4);
+prev_4day.setDate(prev_4day.getDate()-14);
+var prev_9day = new Date();
+prev_9day.setDate(prev_4day.getDate()-19);
 var date;
 
-var total = new Array();
 var t1 = new Array();
 var t2 = new Array();
 var t3 = new Array();
@@ -43,24 +45,42 @@ function startDotMap(data) {
   var x, y;
   var test = [x, y];
   var j = 0;
+  var str;
+  var y, m, d;
+  var visitDatelist = new Array();
 
   for(var i=0;i<listLen;i++){
-    test = [data[i]['Lat'], data[i]['Lon']];
-    total[i] = test;
-    //console.log(test);  // 어떻게 저장되는지 확인
+    str = data[i]['VisitDate'].split('T');
+    y = str[0].substr(0,4);
+    m = str[0].substr(5,2);
+    d = str[0].substr(8,2);
+    strdate = new Date(y, m-1, d);
+    visitDatelist[i] = strdate;
+  /2150  //console.log(test);  // 어떻게 저장되는지 확인
   }
+  //24시간미만
   for(var i=0;i<listLen;i++){
-    if(today <= (date=new Date(data[i]['VisitDate']))) {
+    if(prev_1day > visitDatelist[i] && visitDatelist[i] <= today) {
       test = [data[i]['Lat'], data[i]['Lon']];
-      t1[j++] = test;
+      t1[i] = test;
     }
   }
+   //24시간 이상 ~ 4일 미만
   for(var i=0;i<listLen;i++){
-    if(today >= date=new Date(data[i]['VisitDate') {
+    if(prev_1day >= visitDatellist[i] && visitDatelist[i] < prev_4day) {
       test = [data[i]['Lat'], data[i]['Lon']];
-      t2[j++] = test;
+      t2[i] = test;
     }
   }
+  //4일 이상 ~ 9일 이하
+  for(var i=0;i<listLen;i++){
+    if(prev_4day >= visitDatellist[i] && visitDatelist[i] <= prev_9day) {
+      test = [data[i]['Lat'], data[i]['Lon']];
+      t3[i] = test;
+    }
+  }
+  // startDate 이후 endDate 이전
+
 /*  for(var i=0;i<listLen;i++){
     if(data[i]['VisitDate'] <= "2020-06-03" && data[i]['VisitDate'] > "2020-05-27") {
       test = [data[i]['Lat'], data[i]['Lon']];
@@ -80,11 +100,11 @@ function startDotMap(data) {
     fillColor: '#000000',
     radius: 3
   });
-/*  dotmap_t3 = new naver.maps.visualization.DotMap({
+  dotmap_t3 = new naver.maps.visualization.DotMap({
     map: map,
     data: t3,
     fillColor: '#0000FF',
     radius: 3
-  });*/
+  });
   return result;
 }
