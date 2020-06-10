@@ -83,7 +83,7 @@ function startDotMap(data) {
     data: t1,
     fillColor: '#FF0000',
     opacity: 1,
-    radius: 3
+    radius: 5
   });
   // 24시간 이상~4일 미만
   dotmap_t2 = new naver.maps.visualization.DotMap({
@@ -91,7 +91,7 @@ function startDotMap(data) {
     data: t2,
     fillColor: '#51ff00',
     opacity: 1,
-    radius: 3
+    radius: 5
   });
   // 4일 이상 ~ 9일 이하
   dotmap_t3 = new naver.maps.visualization.DotMap({
@@ -99,6 +99,6 @@ function startDotMap(data) {
     data: t3,
     fillColor: '#0000ff',
     opacity: 1,
-    radius: 3
+    radius: 5
   });
 }
