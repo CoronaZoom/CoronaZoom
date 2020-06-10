@@ -7,7 +7,6 @@ var map = new naver.maps.Map("map", {
 var infoWindow = new naver.maps.InfoWindow({
     anchorSkew: true
 });
-
 map.setCursor('pointer');
 
 function searchCoordinateToAddress(latlng) {
@@ -36,10 +35,14 @@ function searchCoordinateToAddress(latlng) {
 
             htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
         }
-
+        var copy_test = htmlAddresses[0];
+        $("#copy_test").append(copy_test);
+        console.log(copy_test);
         infoWindow.setContent([
             '<div style="padding:10px;min-width:200px;line-height:150%;">',
             '<h4 style="margin-top:5px;">확진자 방문 장소</h4><br />',
+             '<h2 class="text-black" id="copy_test"></h2>',
+            '<button onclick="copy_example()">복사하기</button>',
             htmlAddresses.join('<br />'),
             '</div>'
         ].join('\n'));
@@ -47,7 +50,13 @@ function searchCoordinateToAddress(latlng) {
         infoWindow.open(map, latlng);
     });
 }
-
+function copy_example() {
+        var copyText = document.getElementById("copy_test");
+        console.log(copyText);
+        copyText.select();
+        document.execCommand("Copy");
+        alert("복사되었습니다.")
+    }
 function searchAddressToCoordinate(address) {
     naver.maps.Service.geocode({
         query: address
@@ -79,14 +88,12 @@ function searchAddressToCoordinate(address) {
   //      infoWindow.open(map, point);
     });
 }
-
 function initGeocoder() {
     if (!map.isStyleMapReady) {
         return;
     }
-
     map.addListener('click', function(e) {
-        searchCoordinateToAddress(e.coord);
+          searchCoordinateToAddress(e.coord);
     });
 
     $('#address').on('keydown', function(e) {
