@@ -1,8 +1,13 @@
 
 var tldate, tlstart;
 var strdate, sdvalue = 0;
+var usable = 0;
 // 오늘 날짜
 var tltoday = new Date();
+
+jb2(document).ready(function(){
+	document.getElementById("timelineSliderVal").textContent = getFormatDate(tltoday);
+});
 
 // 검색 옵션과의 충돌을 막기 위해 체크박스 이용
 // 체크O -> 슬라이더 값에 맞는 데이터가 적용된 지도가 뜸
@@ -10,6 +15,7 @@ var tltoday = new Date();
 jb2("#timeline-enabled").click(function() {
 	if(this.checked) {
 		slider.enable();
+		usable = 1;
 		tldate = new Date(tltoday.getFullYear(), tltoday.getMonth(), tltoday.getDate() - 30 + sliderValueReturn());
 	  tlstart = new Date(tltoday.getFullYear(), tltoday.getMonth(), tltoday.getDate() - 30);
 	  strdate = getFormatDate(tldate);
@@ -18,6 +24,7 @@ jb2("#timeline-enabled").click(function() {
 	}
 	else {
 		slider.disable();
+		usable = 0;
 		tldate = new Date(tltoday.getFullYear(), tltoday.getMonth(), tltoday.getDate());
 	  tlstart = new Date(tltoday.getFullYear(), tltoday.getMonth(), tltoday.getDate());
 	  strdate = getFormatDate(tldate);
@@ -68,6 +75,10 @@ function tldateReturn(){
 
 function tlstartReturn(){
   return tlstart;
+}
+
+function usableReturn(){
+  return usable;
 }
 
 function sliderValueReturn(){
