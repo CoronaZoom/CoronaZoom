@@ -123,7 +123,7 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.06.10</h6>
+                                                  <h6 class="notification-heading">20.05.06</h6>
                                                   <span class="notification-text">국내코로나현황이 업데이트 됐습니다.</span>
                                               </div>
                                           </a>
@@ -132,7 +132,7 @@
                                           <a href="javascript:void()">
                                               <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
                                               <div class="notification-content">
-                                                  <h6 class="notification-heading">20.06.10</h6>
+                                                  <h6 class="notification-heading">20.05.06</h6>
                                                   <span class="notification-text">우리동네코로나현황이 업데이트 됐습니다.</span>
                                               </div>
                                           </a>
@@ -180,49 +180,11 @@
                        <div class="card">
                           <div class="card-body pb-0 d-flex justify-content-between">
                             <div>
-                                <h4 class="mb-1">우리동네 코로나 현황</h4>
+                                <h3 class="mb-1">우리동네 코로나 현황</h3>
                                 <p>클릭 시 위치 근처나 전국 확진자 방문 장소를 알려줍니다.</p>
                                 <p>24시간 미만 : 빨강 / 24시간 이상~4일 미만 : 연두 / 4일이상~9일이하 : 파랑</p>
 
                             </div>
-                            <ul class="clearfix">
-                              <li class="icons dropdown d-none d-md-flex">
-                                  <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                          <span class="badge badge-pill gradient-4">선별진료소 알아보기</span>
-                                      </a>
-                                      <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                          <div class="dropdown-content-heading d-flex justify-content-between">
-                                              <span class="">근처 선별진료소</span>
-                                              <a href="javascript:void()" class="d-inline-block">
-                                                  <span class="badge badge-pill gradient-4">2</span>
-                                              </a>
-                                          </div>
-                                        <!-- 근처 선별진료소 알아보기 -->
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="javascript:void()">
-                                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-user"></i></span>
-                                                        <div class="notification-content">
-                                                            <h6 class="notification-heading">~~진료소</h6>
-                                                            <span class="notification-text">031-XXX-XXXX.</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void()">
-                                                        <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-user"></i></span>
-                                                        <div class="notification-content">
-                                                            <h6 class="notification-heading">~~진료소</h6>
-                                                            <span class="notification-text">031-YYY-YYYY</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
                           </div>
                           <div class="card-body pb-0 d-flex justify-content-between">
                             <!-- 지도 -->
@@ -245,7 +207,29 @@
           </div>
       </div>
     </div>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                 <div class="card-body pb-0 d-flex justify-content-between">
+                   <div>
+                       <h3 class="mb-1">근처 선별진료소 목록</h3>
+                       <p><h4><span id="hospitallist"></span></h4></p>
+                   </div>
+                 </div>
+                 <div class="card-body pb-0 d-flex justify-content-between">
+                   <div class="w-100 mr-2">
+                   </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+   </div>
   </div>
+</div>
+</div>
           <!-- #/ container -->
       <!--**********************************
           Content body end
@@ -273,6 +257,7 @@
       <!--위치 정보를 받아오는 getCurrentPosition함수를 사용해 위도 경도를 알아오게 하는 것 까지 구현-->
     <!--  <script src="./js/geocoder.js"></script> -->
       <script src="./js/setinfo.js"></script>
+      <script src="./js/hospital.js"></script>
       <script src="./js/getCurrentPosition.js"></script>
       <script src="./js/towndotmap.js"></script>
       <script src="./js/SearchAddress.js"></script>
