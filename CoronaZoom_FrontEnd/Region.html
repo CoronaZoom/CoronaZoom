@@ -363,8 +363,13 @@
                                   <div class="card-body pb-0 d-flex justify-content-between">
                                     <div>
                                         <h4 class="mb-1">지역별 코로나 현황</h4>
-                                        <p></p>
-                                        <h3 class="m-0"></h3>
+                                        <script>
+                                        jb4(function calendar() {
+                                         //오늘 날짜를 출력
+                                         jb4("#regiontoday").text(new Date().toLocaleDateString());
+                                       });
+                                        </script>
+                                         <p><span id="regiontoday"></span> 기준</p>
                                     </div>
                                   </div>
                                   <div class="card-body pb-0 d-flex justify-content-between">
