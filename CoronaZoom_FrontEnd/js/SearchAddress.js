@@ -36,27 +36,39 @@ function searchCoordinateToAddress(latlng) {
             htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
         }
         var copy_test = htmlAddresses[0];
-        $("#copy_test").append(copy_test);
         console.log(copy_test);
+        $("#copy_test").append(copy_test);
         infoWindow.setContent([
             '<div style="padding:10px;min-width:200px;line-height:150%;">',
             '<h4 style="margin-top:5px;">확진자 방문 장소</h4><br />',
-             '<h2 class="text-black" id="copy_test"></h2>',
-            '<button onclick="copy_example()">복사하기</button>',
             htmlAddresses.join('<br />'),
-            '</div>'
-        ].join('\n'));
-
+           '<br /><br /><button type="button" class="btn mb-1 btn-outline-info" onclick="copy_example()">복사</button><br />',
+           '</div></div>'
+       ].join('\n'));
         infoWindow.open(map, latlng);
+        console.log("dd" + htmlAddresses[0]);
+        func1(htmlAddresses);
     });
 }
+
+var adrlist = new Array();
+
+function func1(arr){
+  adrlist = arr;
+}
+
 function copy_example() {
-        var copyText = document.getElementById("copy_test");
-        console.log(copyText);
-        copyText.select();
-        document.execCommand("Copy");
-        alert("복사되었습니다.")
-    }
+  var copyText = document.createElement('textarea');
+  var str = '[최근 확진자가 방문한 장소입니다]\n' + adrlist[0].substr(11,);
+  copyText.value = str;
+  console.log(copyText.value);
+  document.body.appendChild(copyText);
+  copyText.select();
+  document.execCommand("copy");
+  alert("복사되었습니다.")
+  document.body.removeChild(copyText);
+}
+
 function searchAddressToCoordinate(address) {
     naver.maps.Service.geocode({
         query: address
