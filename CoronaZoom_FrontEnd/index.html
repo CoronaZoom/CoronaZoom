@@ -50,7 +50,7 @@
     </script>
     <!-- JSON 파싱 -->
     <script>
-     jb1(function() {
+     jb1(function calendar() {
       //오늘 날짜를 출력
       jb1("#today").text(new Date().toLocaleDateString());
 
@@ -121,7 +121,7 @@
           <div class="header-content clearfix">
               <div class="nav-control">
                   <div class="hamburger">
-                    <!--  <span class="toggle-icon"><i class="icon-menu"></i></span>-->
+                      <span class="toggle-icon"><i class="icon-menu"></i></span>
                       <span class="toggle-icon"><img src="./Resources/images/hamburger.png" alt=""><i class="icon-menu"></i>
                   </div>
               </div>
@@ -143,7 +143,6 @@
                   <ul class="clearfix">
                       <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                               <i class="mdi mdi-bell-outline"></i>
-                              <img src="./Resources/images/bell.png" alt="">
                               <span class="badge badge-pill gradient-2">2</span>
                           </a>
                           <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
@@ -281,10 +280,10 @@
                                      <p><span id="today"></span> 기준</p>
                                  </div>
                                  <div> <!--체크박스: 전체 격리중 격리해제-->
-                                   <input type="checkbox" name="chk" value="0" onClick="reDotMap()" checked="checked"> 전체
-                                   <input type="checkbox" name="chk" value="1" onClick="reDotMap()"> 격리중
-                                   <input type="checkbox" name="chk" value="2" onClick="reDotMap()"> 격리해제
-                                   <input type="checkbox" name="chk" value="3" onClick="reDotMap()"> 사망
+                                   <input type="checkbox" name="chk" value="0" onClick="status()" checked="checked"> 전체
+                                   <input type="checkbox" name="chk" value="1" onClick="status()"> 격리중
+                                   <input type="checkbox" name="chk" value="2" onClick="status()"> 격리해제
+                                   <input type="checkbox" name="chk" value="3" onClick="status()"> 사망
                                  </div>
                                </div>
                                <div class="card-body pb-0 d-flex justify-content-between">
@@ -317,7 +316,8 @@
                                            종료일:
                                            <input type="text" id="endDate">
                                          </p>
-                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">확인</button>
+                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="searchoption()">확인</button>
+                                     <button type="button" class="btn mb-1 btn-outline-info" onclick="optionreset()">초기화</button>
                                      <!-- <button type="button" class="btn mb-1 btn-outline-info" onclick="reDotMap()">슬라이드쇼</button> -->
                                    </form>
                                   </div>
@@ -329,7 +329,8 @@
                                 <div class="col">
                                   <input type="image" src="./Resources/images/play.png" width="20" alt="">
                                    <input id="timeline" type="text">
-                                   <span id="timelineCurrentSliderValLabel"><span id="timelineSliderVal"></span></span>
+                                   <span id="timelineCurrentSliderValLabel"><span id="timelineSliderVal">
+                                   </span></span>
                                    <input id="timeline-enabled" type="checkbox"/> 한달간의 변화 한눈에 보기
                                   </div>
                               </div>
