@@ -331,12 +331,10 @@ progress {
   height: auto; }
 
 [type="search"] {
-  outline-offset: -2px;
-  -webkit-appearance: none; }
+  outline-offset: -2px; }
 
 [type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; }
+[type="search"]::-webkit-search-decoration { }
 
 ::-webkit-file-upload-button {
   font: inherit;
@@ -3934,8 +3932,7 @@ input[type="button"].btn-block {
 button.close {
   padding: 0;
   background-color: transparent;
-  border: 0;
-  -webkit-appearance: none; }
+  border: 0; }
 
 .modal-open {
   overflow: hidden; }
