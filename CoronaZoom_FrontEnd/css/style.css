@@ -292,7 +292,7 @@ button::-moz-focus-inner,
   border-style: none; }
 
 input[type="radio"],
-input[type="checkbox"] {
+input[type="checkbox1"] {
   box-sizing: border-box;
   padding: 0; }
 
@@ -2483,9 +2483,9 @@ input[type="button"].btn-block {
 .btn-group-toggle > .btn-group > .btn {
   margin-bottom: 0; }
   .btn-group-toggle > .btn input[type="radio"],
-  .btn-group-toggle > .btn input[type="checkbox"],
+  .btn-group-toggle > .btn input[type="checkbox1"],
   .btn-group-toggle > .btn-group > .btn input[type="radio"],
-  .btn-group-toggle > .btn-group > .btn input[type="checkbox"] {
+  .btn-group-toggle > .btn-group > .btn input[type="checkbox1"] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
     pointer-events: none; }
@@ -2576,7 +2576,7 @@ input[type="button"].btn-block {
   border: 1px solid #ced4da;
   border-radius: 0.25rem; }
   .input-group-text input[type="radio"],
-  .input-group-text input[type="checkbox"] {
+  .input-group-text input[type="checkbox1"] {
     margin-top: 0; }
 
 .input-group-lg > .form-control,
@@ -2672,25 +2672,25 @@ input[type="button"].btn-block {
     background-position: center center;
     background-size: 50% 50%; }
 
-.custom-checkbox .custom-control-label::before {
+.custom-checkbox1 .custom-control-label::before {
   border-radius: 0.25rem; }
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+.custom-checkbox1 .custom-control-input:checked ~ .custom-control-label::before {
   background-color: #7571f9; }
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+.custom-checkbox1 .custom-control-input:checked ~ .custom-control-label::after {
   background-color: #7571f9; }
 
-.custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
+.custom-checkbox1 .custom-control-input:indeterminate ~ .custom-control-label::before {
   background-color: #7571f9; }
 
-.custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::after {
+.custom-checkbox1 .custom-control-input:indeterminate ~ .custom-control-label::after {
   background-color: #7571f9; }
 
-.custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
+.custom-checkbox1 .custom-control-input:disabled:checked ~ .custom-control-label::before {
   background-color: rgba(117, 113, 249, 0.5); }
 
-.custom-checkbox .custom-control-input:disabled:indeterminate ~ .custom-control-label::before {
+.custom-checkbox1 .custom-control-input:disabled:indeterminate ~ .custom-control-label::before {
   background-color: rgba(117, 113, 249, 0.5); }
 
 .custom-radio .custom-control-label::before {
@@ -9377,7 +9377,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         margin-top: 18px;
         font-size: 16px;
         margin-left: 5px; }
-      .email-list .message .col-mail-1 .email-checkbox {
+      .email-list .message .col-mail-1 .email-checkbox1 {
         display: block;
         float: left;
         margin: 5px 10px 0 20px; }
@@ -9412,7 +9412,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         width: 170px;
         padding-left: 80px; }
 
-.email-checkbox {
+.email-checkbox1 {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -9421,11 +9421,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   border-radius: 1px;
   position: relative;
   top: 0px; }
-  .email-checkbox input {
+  .email-checkbox1 input {
     cursor: pointer; }
-    .email-checkbox input:checked label {
+    .email-checkbox1 input:checked label {
       opacity: 1; }
-  .email-checkbox label {
+  .email-checkbox1 label {
     position: absolute;
     top: 3px;
     left: 3px;
@@ -9993,7 +9993,7 @@ Input Style
 .bootstrap-touchspin .form-control {
   margin: 10px 0px 0px; }
 
-input[type="checkbox"]:after {
+input[type="checkbox1"]:after {
   line-height: 1.5em;
   content: '';
   display: block;
@@ -10006,7 +10006,7 @@ input[type="checkbox"]:after {
   background: #fff;
   line-height: 1.3; }
 
-input[type="checkbox"]:checked:after {
+input[type="checkbox1"]:checked:after {
   width: 1.2rem;
   height: 1.2rem;
   display: block;
@@ -11720,11 +11720,11 @@ table.dataTable thead .sorting::after {
       position: absolute;
       right: 0;
       display: inline-block; }
-  .tdl-holder input[type=checkbox] {
+  .tdl-holder input[type=checkbox1] {
     cursor: pointer;
     opacity: 0;
     position: absolute; }
-    .tdl-holder input[type=checkbox] + i {
+    .tdl-holder input[type=checkbox1] + i {
       background-color: #ddd;
       display: block;
       height: 20px;
@@ -11732,9 +11732,9 @@ table.dataTable thead .sorting::after {
       top: 15px;
       width: 20px;
       z-index: 1; }
-    .tdl-holder input[type=checkbox]:checked + i {
+    .tdl-holder input[type=checkbox1]:checked + i {
       border-color: #464a53; }
-    .tdl-holder input[type=checkbox]:checked + i::after {
+    .tdl-holder input[type=checkbox1]:checked + i::after {
       content: "\f00c";
       font-family: 'fontAwesome';
       display: block;
@@ -11743,7 +11743,7 @@ table.dataTable thead .sorting::after {
       top: -17px;
       z-index: 2;
       color: #162336; }
-    .tdl-holder input[type=checkbox]:checked ~ span {
+    .tdl-holder input[type=checkbox1]:checked ~ span {
       text-decoration: line-through;
       position: relative; }
   .tdl-holder input[type=text] {
@@ -12152,7 +12152,7 @@ table.dataTable thead .sorting::after {
   .rtl .dropdown-menu {
     right: 0;
     text-align: right; }
-  .rtl .checkbox label {
+  .rtl .checkbox1 label {
     padding-right: 1.25rem;
     padding-left: inherit; }
   .rtl .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
@@ -12207,8 +12207,8 @@ table.dataTable thead .sorting::after {
     border-radius: .25rem 0 0 .25rem; }
   .rtl .radio input,
   .rtl .radio-inline,
-  .rtl .checkbox input,
-  .rtl .checkbox-inline input {
+  .rtl .checkbox1 input,
+  .rtl .checkbox1-inline input {
     margin-right: -1.25rem;
     margin-left: inherit; }
   .rtl .list-group {
@@ -14670,7 +14670,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   background-color: #162336;
   border-color: rgba(120, 130, 140, 0.13); }
 
-[data-theme-version="dark"] .card-gateway .card-body .custom-checkbox {
+[data-theme-version="dark"] .card-gateway .card-body .custom-checkbox1 {
   color: #abafb3; }
 
 [data-theme-version="dark"] .wallet-card .wallet-address .input-group-prepend button,
