@@ -182,6 +182,13 @@
                             <div>
                                 <h3 class="mb-1">우리동네 코로나 현황</h3>
                                 <p>클릭 시 위치 근처나 전국 확진자 방문 장소를 알려줍니다.</p>
+                                <script>
+                                jb5(function calendar() {
+                                 //오늘 날짜를 출력
+                                 jb5("#towntoday").text(new Date().toLocaleDateString());
+                               });
+                                </script>
+                                 <p><span id="towntoday"></span> 기준</p>
                                 <p>24시간 미만 : 빨강 / 24시간 이상~4일 미만 : 연두 / 4일이상~9일이하 : 파랑</p>
 
                             </div>
