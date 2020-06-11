@@ -1,5 +1,5 @@
 
-var hsdatalist, listLen;
+var hsdatalist, hslistLen;
 
 jb5(document).ready(function(){
   jb5.ajax({
@@ -12,7 +12,7 @@ jb5(document).ready(function(){
 });
 
 function starthospital(data){
-  listLen = data.length;
+  hslistLen = data.length;
   hsdatalist = data;
 }
 
@@ -26,9 +26,10 @@ function hospitalprint(r_id){
   var r_idlist = new Array();
 
   var j = 0;
-  console.log(hsdatalist);
+  //console.log(hsdatalist);
 
-  for(var i=0;i<listLen;i++){
+  //console.log(r_id);
+  for(var i=0;i<hslistLen;i++){
     if(r_id == hsdatalist[i]['R_id']){
       name[j] = hsdatalist[i]['H_name'];
       p = hsdatalist[i]['Phone'];
@@ -51,7 +52,7 @@ function hospitalprint(r_id){
     resultlist += (i+1) + '. ' + hospitallist[0][i] + ' (전화번호: ' + hospitallist[1][i] + ')' + '<br/>' + '<br/>';
   }
 
-  console.log(resultlist);
+  //console.log(resultlist);
 
   document.getElementById("hospitallist").innerHTML = resultlist;
 
